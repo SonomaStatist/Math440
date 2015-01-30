@@ -1,11 +1,12 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{report}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsfonts}
 
 \begin{document}
 
-\title{Math 440 -- Homework 1}
+\title{Math 440 -- Real Analysis II \\ \vspace{7px} \large{Homework 1}}
 \author{Amandeep Gill}
 \maketitle
 
@@ -17,7 +18,7 @@
 		\[\varlimsup \{s_n\} = \varliminf \{s_n\} = \lim\limits_{n \to \infty}{s_n} = 2\]
 
 	\item{$s_n = n \bmod{4}$} \\\\
-		For all $k \in \bf{N}$ the sequence $\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ contains only the values $\{0, 1, 2, 3\}$. Thus $\forall{k}$, $0 \leqslant s_k \leqslant 3$, so
+		For all $k \in \mathbb{N}$ the sequence $\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ contains only the values $\{0, 1, 2, 3\}$. Thus $\forall{k}$, $0 \leqslant s_k \leqslant 3$, so
 		\[\varlimsup \{s_n\} = 3 \]
 		\[\text{And}\]
 		\[\varliminf \{s_n\} = 0 \] 
@@ -25,9 +26,24 @@
 	\item{$s_n = \begin{cases}
 		n & \text{if $n$ is even} \\
 		\frac{1}{n} + \cos{\pi n} & \text{if $n$ is odd}
-		\end{cases}$}
-		
-		
+		\end{cases}$} \\
+			
+		For all $n \in \bf{N}$, $\frac{1}{n} + \cos{\pi n} \leq n$, so the $\sup\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ is dominated by the even terms of $s_n$. Therefore
+		\[\varlimsup \{s_n\} = \lim\limits_{n \to \infty}{2n} = \infty\]
+		By the same argument, the $\inf\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ is dominated by the odd terms of $s_n$, which is split between two cases: $s_k = \frac{1}{k} + 1$ and $s_k = \frac{1}{k} - 1$. Thus
+		\[
+			\varliminf \{s_n\} = 
+			\lim\limits_{n\to\infty}{\frac{1}{4n+3}-1}
+			= -1
+		\]
+	
+	\item{$s_n = f(n)$, where $f \colon \mathbb{N} \to \mathbb{Q} \cap (0,1)$
+		is a bijection}	\\\\
+		Let $\epsilon > 0$ and $\overline{S} = \{s_n \colon 1 - s_n < \epsilon\}$ \\
+		By Math340 results we know that there exists an infinite number of rationals between any two distinct reals (in this case 1 and $1 - \epsilon$). Therefore $\overline{S}$ is a countably infinite set, and $\overline{S} \setminus \{s_1, s_2, \ldots, s_{k-1}\}$ yields a similarly infinite set. From this,
+		\[\varlimsup \{s_n\} = \sup{\overline{S}} = 1\]
+		Similarly, with $\underline{S} = \{s_n \colon s_n < \epsilon\}$ we have 
+		\[\varliminf \{s_n\} = \inf{\underline{S}} = 0\]
 		
 	\end{enumerate}
 
