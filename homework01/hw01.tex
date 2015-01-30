@@ -80,21 +80,27 @@
 	\[\blacksquare\]
 	\end{enumerate}
 \pagebreak
-\item[\bf{Problem 5}] If $\{a_n\}_{n\in\mathbb{N}}$ is a sequence of real values, then the series $\sum\limits_{n=1}^{\infty}(a_n - a_{n+1})$ converges if and only if $\{a_n\}$ converges.
+\item[\bf{Problem 5}] Let $\{a_n\}_{n\in\mathbb{N}}$ be a sequence of real values. \\
+	The series $\sum\limits_{n=1}^{\infty}(a_n - a_{n+1})$ converges if and only if $\{a_n\}$ converges.
 	\begin{enumerate}
 	\item[Proof:] 
-	Let $\{a_n\}_{n \in \mathbb{N}}$ be a sequence of real values \\
 	Let $s_n = \sum\limits_{k=1}^{n}(a_k - a_{k+1})$ \\
 	The partial sums $s_n$ are telescoping sums, so $\forall n, s_n = a_1 - a_{n+1}$ \\
 	Therefore, $\lim\limits_{n \to \infty} s_n = \lim\limits_{n \to \infty} a_1 - a_n = a_1 - \lim\limits_{n \to \infty} a_n$ \\
 	Since $\lim\limits_{n \to \infty} a_n$ exists if and only if $\exists A \in \mathbb{R}$ such that $\{a_n\} \to A$ \\
-	So $\sum\limits_{n=1}^{\infty}(a_n - a_{n+1})$ exists and is $a_1 - A$ if and only if $\{a_n\}_{n\in\mathbb{N}}$ converges to $A$
-	\[\blacksquare\]
-	\\\\\\
-	
+	$\{s_n\}$ converges to $a_1 - A$ if and only if $\{a_n\}_{n\in\mathbb{N}}$ converges to $A$
+	\[\blacksquare\]\\\\\\
 	\end{enumerate}
 
-\item
+\item[\bf{Problem 6}] $\sum\limits_{k=1}^{\infty}\frac{2}{k(k+1)} = 2$
+	\begin{enumerate}
+	\item[Proof:]
+	By partial fraction decomposition, $\frac{2}{2(k+1)} = \frac{2}{k} - \frac{2}{k+1}$ \\
+	Let $a_k = \frac{2}{k}$, then $a_1 = 2$ and $\lim\limits_{k \to \infty} a_k = 0$ \\
+	Therefore by previous work, \\
+	$\sum\limits_{k=1}^{\infty}(a_k - a_{k+1}) = a_1 - \lim\limits_{n \to \infty}a_n = 2 - 0 = 2$
+	\[\blacksquare\]\\\\\\
+	\end{enumerate}
 
 \end{enumerate}
 
