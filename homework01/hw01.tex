@@ -47,23 +47,25 @@
 		
 	\end{enumerate}
 
-\item[\bf{Problem 2}] Give an example of a sequence $\{s_n\}$ and a real number $s$ such that $s_n < s$ for all $n$, but $\varlimsup s_n \geqslant s$ \\
-	Let $s_n = -\frac{1}{n}$ and $s = 1$, then $\forall n, s_n < s$ and $\varlimsup s_n = s$
+\item[\bf{Problem 2}] Give an example of a sequence $\{s_n\}$ and a real number $s$ such that $s_n < s$ for all $n$, but $\varlimsup s_n \geqslant s$ \\\\
+	Let $s_n = 1-\frac{1}{n}$ and $s = 1$, then $\forall n, s_n < s$ and $\varlimsup s_n = s$
 	
 \item[\bf{Problem 3}] Let \{$a_n$\} and \{$b_n$\} be bounded sequences of nonnegative real numbers.
 	\begin{enumerate}
 	\item $\varlimsup(a_n b_n) \leqslant (\varlimsup a_n)(\varlimsup b_n)$ \\
-	
 	\item[Proof:]
 	
-	Let $s_n = a_n b_n$
+	Since $a_n, b_n$ are bounded and nonnegative, let $A,B \in \mathbb{R}^+ \cup  \{0\}$ such that $\varlimsup \{a_n\} = A$ and $\varlimsup \{b_n\} = B$ \\
+	By definition, $\forall n, a_n \leqslant A$ and $b_n \leqslant B$, so $a_n b_n \leqslant AB$ \\
+	$AB$ is thus an upper bound on the sequence $\{a_n b_n\}$ \\ 
+	Therefore $\varlimsup \{a_n b_n\} \leqslant AB$	
 	\[\blacksquare\]
 	\end{enumerate}
 	
 \item[\bf{Problem 4}] The series $\sum\limits_{k=1}^{\infty} \frac{1}{\sqrt{k}}$ diverges
 	\begin{enumerate}
 	\item[Proof:] Let $s_n = \sum\limits_{k=1}^{n} \frac{1}{\sqrt{k}}$ \\
-	Then the partial sum $s_n = 1 + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}}$ \\
+	Then $s_n = 1 + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}}$ \\
 	Since $\frac{1}{\sqrt{k}}$ is monotone decreasing, we have
 	\[
 		s_n \geqslant 
