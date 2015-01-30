@@ -1,0 +1,37 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\title{Math 440 -- Homework 1}
+\author{Amandeep Gill}
+\maketitle
+
+\begin{enumerate}
+
+\item[\bf{Problem 1}] Find the limit inferior and limit superior of each of the following sequences \{$s_n$\}. 
+	\begin{enumerate}
+	\item{$s_n = 2 - \frac{1}{n}$} \\
+		\[\varlimsup \{s_n\} = \varliminf \{s_n\} = \lim\limits_{n \to \infty}{s_n} = 2\]
+
+	\item{$s_n = n \bmod{4}$} \\\\
+		For all $k \in \bf{N}$ the sequence $\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ contains only the values $\{0, 1, 2, 3\}$. Thus $\forall{k}$, $0 \leqslant s_k \leqslant 3$, so
+		\[\varlimsup \{s_n\} = 3 \]
+		\[\text{And}\]
+		\[\varliminf \{s_n\} = 0 \] 
+
+	\item{$s_n = \begin{cases}
+		n & \text{if $n$ is even} \\
+		\frac{1}{n} + \cos{\pi n} & \text{if $n$ is odd}
+		\end{cases}$}
+		
+		
+		
+	\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
