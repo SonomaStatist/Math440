@@ -76,9 +76,9 @@
 }
 
 \proof{3}{
-	Let $V$ be a vector space over some field such that $dim(V) = n$, and let $S \subseteq V$ such that $span(S) = V$, then $\exists \beta \subseteq S$ such that $span(\beta) = V,\ |\beta| = n$, and $|S| \geqslant n$.
+	Let $V$ be a vector space over some field $F$ such that $dim(V) = n$, and let $S \subseteq V$ such that $span(S) = V$, then $\exists \beta \subseteq S$ such that $span(\beta) = V,\ |\beta| = n$, and $|S| \geqslant n$.
 }{
-	Since $V$ is a vector space, $V$ has a basis $\beta_1$ such that $span(\beta_1) = V$ and $|\beta| = n$. If $\beta_1 \subseteq S$, then the hypothesis holds. If $\beta_1 \not\subseteq S$, then $\beta_1 \subseteq span(S)$.
+	Since $V$ is a vector space, $V$ has a basis $\beta_1$ such that $span(\beta_1) = V$ and $|\beta| = n$. If $\beta_1 \subseteq S$, then the hypothesis holds. If $\beta_1 \not\subseteq S$, then $\beta_1 \subseteq span(S)$. This means that $\forall b_i \in \beta,\ \exists s_1,s_2,\ldots,s_m \in S$ and $c_1,c_2,\ldots,c_m \in F$ such that $b_i = c_1 s_1 + c_2 s_2 + \cdots + c_m s_m$. Let $B$ be the set containing every $s_i$ from $S$ where the scalar multiplier is not the 0 in $F$, then $|B| \leqslant |\beta| \cdot m$ and $span(B) = S$. Because $B$ is finite set that spans $S,\ \exists \beta \subseteq B$ such that $\beta \subseteq S$ and $span(\beta) = V$, and $|\beta| = n$. It also follows that $|S| \geqslant |\beta| = n$.
 }
 
 \end{document}
