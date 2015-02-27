@@ -1,8 +1,47 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[a4paper]{geometry}
+\geometry{a4paper,tmargin=1in,bmargin=1in}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
+
+%Custom command to shorten mathbb for basic number sets
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+%Custom command for defining problem{#}{theorem}proof:{text}blacksquare
+\newcommand{\proof}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2
+		\begin{enumerate}
+			\item[\bf{Proof:}]
+			#3
+		\end{enumerate}
+	\end{enumerate}
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+%Custom command for defining problem{#}{text}
+\newcommand{\problem}[2]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] 
+		#2
+	\end{enumerate}
+}
+
+%Custom command for defining {item}{theorem}proof:{text}blacksquare
+%does require \b{enum} ... \e{enum} or \problem
+\newcommand{\subproof}[3]{
+	\item[#1] #2
+	\item[\bf{Proof:}]
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
 
 \begin{document}
 
@@ -10,63 +49,62 @@
 \author{Amandeep Gill}
 \maketitle
 
-\begin{enumerate}
-
-\item[\bf{Problem 1}] Find the limit inferior and limit superior of each of the following sequences \{$s_n$\}. 
-	\begin{enumerate}
-	\item{$s_n = 2 - \frac{1}{n}$} \\
-		\[\varlimsup \{s_n\} = \varliminf \{s_n\} = \lim\limits_{n \to \infty}{s_n} = 2\]
-
-	\item{$s_n = n \bmod{4}$} \\\\
+\problem{1}{
+	Find the limit inferior and limit superior of each of the following sequences \{$s_n$\}. \\
+	\subproof{(a)}{$s_n = 2 - \frac{1}{n}$}{
+		\[\varlimsup\{s_n\}=\varliminf\{s_n\}=\lim\limits_{n\to\infty}{s_n}=2\]
+	}
+	\subproof{(b)}{$s_n = n \bmod{4}$}{
 		For all $k \in \mathbb{N}$ the sequence $\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ contains only the values $\{0, 1, 2, 3\}$. Thus $\forall{k}$, $0 \leqslant s_k \leqslant 3$, so
 		\[\varlimsup \{s_n\} = 3 \]
 		\[\text{And}\]
 		\[\varliminf \{s_n\} = 0 \] 
-
-	\item{$s_n = \begin{cases}
-		n & \text{if $n$ is even} \\
-		\frac{1}{n} + \cos{\pi n} & \text{if $n$ is odd}
-		\end{cases}$} \\
-			
+	}
+	\subproof{(c)}{
+		$s_n = \left\{
+				\begin{array}{ll}
+					n & \text{if $n$ is even} \\
+					\frac{1}{n} + \cos{\pi n} & \text{if $n$ is odd}
+				\end{array}
+			\right.
+		$
+	}{
 		For all $n \in \bf{N}$, $\frac{1}{n} + \cos{\pi n} \leq n$, so the $\sup\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ is dominated by the even terms of $s_n$. Therefore
 		\[\varlimsup \{s_n\} = \lim\limits_{n \to \infty}{2n} = \infty\]
 		By the same argument, the $\inf\{s_k, s_{k+1}, s_{k+2}, \ldots\}$ is dominated by the odd terms of $s_n$, which is split between two cases: $s_k = \frac{1}{k} + 1$ and $s_k = \frac{1}{k} - 1$. Thus
-		\[
-			\varliminf \{s_n\} = 
-			\lim\limits_{n\to\infty}{\frac{1}{4n+3}-1}
-			= -1
-		\]
-	
-	\item{$s_n = f(n)$, where $f \colon \mathbb{N} \to \mathbb{Q} \cap (0,1)$
-		is a bijection}	\\\\
+		\[\varliminf \{s_n\} = \lim\limits_{n\to\infty}{\frac{1}{4n+3}-1}= -1\]
+	}
+	\pagebreak
+	\subproof{(d)}{$s_n = f(n)$, where $f \colon \mathbb{N} \to \mathbb{Q} \cap (0,1)$ is a bijection}{
 		Let $\epsilon > 0$ and $\overline{S} = \{s_n \colon 1 - s_n < \epsilon\}$ \\
 		By Math340 results we know that there exists an infinite number of rationals between any two distinct reals (in this case 1 and $1 - \epsilon$). Therefore $\overline{S}$ is a countably infinite set, and $\overline{S} \setminus \{s_1, s_2, \ldots, s_{k-1}\}$ yields a similarly infinite set. From this,
-		\[\varlimsup \{s_n\} = \sup{\overline{S}} = 1\]
+		\[\varlimsup \{s_n\} = \sup{\overline{S}} = 1\] 
+		
 		Similarly, with $\underline{S} = \{s_n \colon s_n < \epsilon\}$ we have 
 		\[\varliminf \{s_n\} = \inf{\underline{S}} = 0\]
-		
-	\end{enumerate}
+	}
+}
 
-\item[\bf{Problem 2}] Give an example of a sequence $\{s_n\}$ and a real number $s$ such that $s_n < s$ for all $n$, but $\varlimsup s_n \geqslant s$ \\\\
+\proof{2}{
+	Give an example of a sequence $\{s_n\}$ and a real number $s$ such that $s_n < s$ for all $n$, but $\varlimsup s_n \geqslant s$
+}{
 	Let $s_n = 1-\frac{1}{n}$ and $s = 1$, then $\forall n, s_n < s$ and $\varlimsup s_n = s$
-	\\\\\\
-	
-\item[\bf{Problem 3}] Let \{$a_n$\} and \{$b_n$\} be bounded sequences of nonnegative real numbers.
-	\begin{enumerate}
-	\item $\varlimsup(a_n b_n) \leqslant (\varlimsup a_n)(\varlimsup b_n)$ \\
-	\item[Proof:]
-	
+}
+
+\proof{3}{
+	Let \{$a_n$\} and \{$b_n$\} be bounded sequences of nonnegative real numbers.
+}{
+	$\varlimsup(a_n b_n) \leqslant (\varlimsup a_n)(\varlimsup b_n)$
+}{
 	Since $a_n, b_n$ are bounded and nonnegative, let $A,B \in \mathbb{R}^+ \cup  \{0\}$ such that $\varlimsup \{a_n\} = A$ and $\varlimsup \{b_n\} = B$ \\
 	By definition, $\forall n, a_n \leqslant A$ and $b_n \leqslant B$, so $a_n b_n \leqslant AB$ \\
 	$AB$ is thus an upper bound on the sequence $\{a_n b_n\}$ \\ 
 	Therefore $\varlimsup \{a_n b_n\} \leqslant AB$	
-	\[\blacksquare\]
-	\\\\\\
-	\end{enumerate}	
-	
-\item[\bf{Problem 4}] The series $\sum\limits_{k=1}^{\infty} \frac{1}{\sqrt{k}}$ diverges
-	\begin{enumerate}
-	\item[Proof:] 
+}
+
+\proof{4}{
+	The series $\sum\limits_{k=1}^{\infty} \frac{1}{\sqrt{k}}$ diverges
+}{
 	Let $s_n = \sum\limits_{k=1}^{n} \frac{1}{\sqrt{k}}$ \\
 	Then $s_n = 1 + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}}$ \\
 	Since $\frac{1}{\sqrt{k}}$ is monotone decreasing, we have
@@ -77,39 +115,32 @@
 	\]
 	So for all $n \geqslant 1$, the partial sum $s_n \geqslant \sqrt{n}$ \\
 	Therefore, $\varlimsup\{s_n\} \geqslant \varlimsup\{\sqrt{n}\} = \infty$ 
-	\[\blacksquare\]
-	\end{enumerate}
+}
 \pagebreak
-\item[\bf{Problem 5}] Let $\{a_n\}_{n\in\mathbb{N}}$ be a sequence of real values. \\
+\proof{5}{
+	Let $\{a_n\}_{n\in\mathbb{N}}$ be a sequence of real values. \\
 	The series $\sum\limits_{n=1}^{\infty}(a_n - a_{n+1})$ converges if and only if $\{a_n\}$ converges.
-	\begin{enumerate}
-	\item[Proof:] 
+}{
 	Let $s_n = \sum\limits_{k=1}^{n}(a_k - a_{k+1})$ \\
 	The partial sums $s_n$ are telescoping sums, so $\forall n, s_n = a_1 - a_{n+1}$ \\
 	Therefore, $\lim\limits_{n \to \infty} s_n = \lim\limits_{n \to \infty} a_1 - a_n = a_1 - \lim\limits_{n \to \infty} a_n$ \\
 	Since $\lim\limits_{n \to \infty} a_n$ exists if and only if $\exists A \in \mathbb{R}$ such that $\{a_n\} \to A$ \\
 	$\{s_n\}$ converges to $a_1 - A$ if and only if $\{a_n\}_{n\in\mathbb{N}}$ converges to $A$
-	\[\blacksquare\]\\\\\\
-	\end{enumerate}
-
-\item[\bf{Problem 6}] $\sum\limits_{k=1}^{\infty}\frac{2}{k(k+1)} = 2$
-	\begin{enumerate}
-	\item[Proof:]
+}
+\proof{6}{
+	$\sum\limits_{k=1}^{\infty}\frac{2}{k(k+1)} = 2$
+}{
 	By partial fraction decomposition, $\frac{2}{2(k+1)} = \frac{2}{k} - \frac{2}{k+1}$ \\
 	Let $a_k = \frac{2}{k}$, then $a_1 = 2$ and $\lim\limits_{k \to \infty} a_k = 0$ \\
 	Therefore by previous work, \\
 	$\sum\limits_{k=1}^{\infty}(a_k - a_{k+1}) = a_1 - \lim\limits_{n \to \infty}a_n = 2 - 0 = 2$
-	\[\blacksquare\]\\\\\\
-	\end{enumerate}
-
-\item[\bf{Problem 7}] $\sum\limits_{k=1}^{\infty}(\sqrt{k+1} - \sqrt{k})$ diverges
-	\begin{enumerate}
-	\item[Proof:] 
+}
+\proof{7}{
+	$\sum\limits_{k=1}^{\infty}(\sqrt{k+1} - \sqrt{k})$ diverges
+}{
 	Let $a_k = - \sqrt{k}$ \\
 	$\sum\limits_{k=1}^{\infty}(\sqrt{k+1} - \sqrt{k}) = \sum\limits_{k=1}^{\infty}(a_k - a_{k+1})$ \\
 	Since $\{a_k\}$ diverges, the series diverges by previous results.
-	\[\blacksquare\]
-	\end{enumerate}
+}
 
-\end{enumerate}
 \end{document}

@@ -1,0 +1,167 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+%Custom command to shorten mathbb for basic number sets
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+%Custom command to create a subscript naught
+\newcommand{\naught}[1]{{#1}_{\text{o}}}
+
+%Custom command for defining problem{#}{theorem}proof:{text}blacksquare
+\newcommand{\proof}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2
+		\begin{enumerate}
+			\item[\textbf{Proof:}]
+			#3
+			\begin{flushright}
+				$\blacksquare$
+			\end{flushright}
+		\end{enumerate}
+	\end{enumerate}
+}
+
+%Custom command for defining problem{prob#}{text}
+\newcommand{\problem}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2 
+		#3
+	\end{enumerate}
+}
+
+%Custom command for defining {item#}{header}proof:{text}blacksquare
+%does require \b{enum} ... \e{enum} or \problem
+\newcommand{\subproof}[3]{
+	\item[#1] #2
+	\item[\bf{Proof:}] 
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+\begin{document}
+
+\title{Math 440 -- Real Analysis II \\ \vspace{7px} \large{Exam 1}}
+\author{Amandeep Gill}
+\maketitle
+
+\problem{1}{
+	Given the series $\sum\limits_{k=1}^{\infty}p^{-k}k^p$, for what values of $p$ does it:
+}{
+	\subproof{(a)}{
+		diverges when $-1 < p \leqslant 1$
+	}{
+		If $p = 0$ then $p^{-k}k^p = \frac{1}{0}$, which is unbounded and therefore divergent. \\
+		If $p = 1$ then $p^{-k}k^p = k$, which is unbounded and therefore divergent. \\
+		If $0 < p < 1$ then $p = 1/r$ for some $r > 1$ and $p^{-k}k^p = r^k \sqrt[r]{k}$, which is unbounded and therefore divergent. \\
+		If $-1 < p < 0$ then $p = -1/r$ for some $r > 1$ and $p^{-k}k^p = (-1)^k \frac{r^k}{\sqrt[r]{k}}$. Since $r^k$ grows without bounds, and for all $r$, there exists some $\naught{k} \in \bb{N}$ such that $r^{\naught{k}} > \sqrt[r]{k_o}$, $(-1)^{k}\frac{r^{k}}{k^p}$ is unbounded and therefore divergent.
+	}
+	
+	\subproof{(b)}{
+		converge conditionally when $p = -1$
+	}{
+		If $p = -1$ then $p^{-k}k^p = \frac{(-1)^k}{k}$, which is the oscillating harmonic series, and is conditionally convergent.
+	}
+	
+	\subproof{(c)}{
+		converge absolutely when $|p| > 1$
+	}{
+		If $p < -1$ then $p^{-k}k^p = \frac{(-1)^k}{p^k k^p}$. Since $\left|\frac{(-1)^k}{p^k k^p}\right| = \frac{1}{p^k k^p} \leqslant \frac{1}{k^p}$, the series $\sum\limits_{k=1}^{\infty}\frac{(-1)^k}{p^k k^p}$ converges absolutely by the Comparison Test against a P-series where $P > 1$.
+		
+		If $p > 1$ then using the Ratio Test leads to $\lim\limits_{k \to \infty}\frac{p^{-k-1}(k+1)^p}{p^k k^p} = \frac{1}{p} < 1$, meaning the series converges. Because $|p^k k^p| = p^k k^p$, the series is absolutely convergent.
+	}
+}
+
+\pagebreak
+
+\proof{2}{
+	If $\{a_n\}$ is a sequence with $a_n > 0$ for all $n$ then $\sum\limits_{n=1}^{\infty}a_n$ converges if and only if ${\sum\limits_{n=1}^{\infty}}\frac{a_n}{1 + a_n}$ converges.
+}{
+	Let $\{a_n\}$ be a sequence with $a_n > 0$ for all $n$
+	\item[$(\implies)$]
+		Assume $\sum\limits_{n=1}^{\infty}a_n$ converges. Since $a_n > 0$, $a_n + 1 > 1$ which means that $\frac{a_n}{1 + a_n} < a_n$ for all $n$. Therefore, by the Comparison Test, ${\sum\limits_{n=1}^{\infty}}\frac{a_n}{1 + a_n}$ is a convergent series.
+	\item[$(\impliedby)$] 
+		Assume ${\sum\limits_{n=1}^{\infty}}\frac{a_n}{1 + a_n}$ converges. This implies that $\lim\limits_{n \to \infty}\frac{a_n}{1 + a_n} = 0$, so $\lim\limits_{n \to \infty} 1 - \frac{1}{1 + a_n} = 0$, which means $\lim\limits_{n \to \infty}a_n = 0$. $\{a_n\}$ is therefore a bounded sequence so there exists $m \in \bb{R^+}$ such that $m = \max\{a_n\}$. Then for all $n$, $\frac{a_n}{1 + m} \leqslant \frac{a_n}{1 + a_n}$ and by the Comparison Test $\sum\limits_{n=1}^{\infty}\frac{a_n}{1 + m}$ converges, and therefore so does $\sum\limits_{n=1}^{\infty}a_n$.
+}
+
+%\pagebreak
+
+\problem{3}{
+	Let $\{a_n\}$ be a sequence $a_n \neq 0$ for all $n$.
+}{
+	\subproof{(a)}{
+		Disprove: if $\left|\frac{a_{n+1}}{a_n}\right| < 1$ for all $n$ then $\sum\limits_{n=1}^{\infty}a_n$ converges.
+	}{
+		Let $a_n = \frac{1}{n}$. For all $n$, $\left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{n}{n+1}\right| < 1$, however $\sum\limits_{n=1}^{\infty}a_n$ is the harmonic series and therefore does not converge.
+	}
+	
+	\subproof{(b)}{
+		If there exists a convergent subsequence of $\{b_n\} = \left\{\sqrt[n]{|a_n|}\right\}_{n=1}^{\infty}$ whose limit is strictly greater than 1 then the series $\sum\limits_{n=1}^{\infty}a_n$ diverges
+	}{
+		Let $\{b_n\}$ have a subsequence that converges to some $b > 1$. Then $\limsup\limits_{n \to \infty}\{b_n\} \geqslant b$ since for all $n_o \in \bb{N}$ and $\epsilon > 0$ there is an $n > n_o$ such that $|b_n - b| < \epsilon$. Thus $\{b_n\}$ either diverges or converges to a number greater than 1, and the series diverges by the Root Test.
+	}
+}
+
+\pagebreak
+
+\problem{4}{
+	For each $n \in \bb{N}$ let $f_n : [0,1] \to \bb{R}$ be defined as \\
+	\begin{displaymath}
+		f_n(x) = \left\{
+			\begin{array}{lr}
+				nx & \text{if } 0 \leqslant x \leqslant \frac{1}{n} \\
+				2 - nx & \text{if } \frac{1}{n} < x \leqslant \frac{2}{n} \\
+				0 & \text{if } \frac{2}{n} < x \leqslant 1
+			\end{array}
+		\right.
+	\end{displaymath}
+}{
+	\item[(a)] 
+		Plot of $f_n$ for $n = 2, 3, 4$ -- green, blue, and orange respectively: \\
+		\includegraphics[scale=.25]{fn_plot.png}
+		
+	\subproof{(b)}{
+		$\{f_n\}$ converges pointwise but not uniformly to some function $f$.
+	}{
+		Let $x \in [0,1]$ be given. If $x = 0$ then $\lim\limits_{n \to \infty}f_n=\lim\limits_{n \to \infty}nx=0$. Otherwise, if $0 < x \leqslant 1$ then there exists some $n_o \in \bb{N}$ such that $\frac{2}{n_o} < x$ and so for all $n > n_o$, $f_n(x) = 0$. Therefore $\{f_n\}$ converges pointwise to $f(x)=0$. However letting $\epsilon = \frac{1}{2}$, $n>N$, and $x = \frac{1}{2n}$ for some $N \in \bb{N}$ gives $|f_n(x)-f(x)| = |nx-0| = \left|\frac{n}{2n}\right| = \frac{1}{2} = \epsilon$, showing that $\{f_n\}$ is not uniformly convergent.
+	}
+	
+	\item[(c)] 
+		$f_n$ is continuous for all $n$ on [0,1], and the same holds for $f$.
+	
+	\item[(d)] 
+		Parts (b) and (c) do not violate Corollary 8.3.2 because it does not address functions that do not converge uniformly.
+}
+
+\pagebreak
+
+\problem{5}{}{
+	\subproof{(a)}{
+		$\frac{1}{1-x} = \sum\limits_{k=0}^{\infty}x^k$ when $x \in (-1,1)$
+	}{
+		Let $s_n = \sum\limits_{k=0}^{n}x^k$, then $s_n = 1 + x + x^2 + \cdots + x^n = \frac{1}{1-x} - \frac{x^n}{1-x}$. Since $|x| < 1$, $\lim\limits_{n \to \infty}s_n = \lim\limits_{n \to \infty}\frac{1}{1-x} - \frac{x^n}{1-x} = \frac{1}{1-x}$.
+	}
+	
+	\subproof{(b)}{
+		Evaluate $f(x)=\int_{0}^{1/2}\frac{1}{1+x^6}dx$ as a power series.
+	}{
+		By part (a), $\frac{1}{1+x^6} = \sum\limits_{k=0}^{\infty}(x^6)^k$ since $x^6 \in (-1,1)$ for all $x \in \left[0,\frac{1}{2}\right]$. Substituting the series in the integral gives $\int_{0}^{1/2}\sum\limits_{k=0}^{\infty}(x^6)^k dx = \sum\limits_{k=0}^{\infty}\int_{0}^{1/2}(x^6)^k dx$ because the Power Series is uniformly convergent on its domain. This gives $f(x) = \sum\limits_{k=0}^{\infty}\frac{(x^6)^{k+1}}{k+1}$.
+	}
+}
+
+\problem{6}{
+	Using $f(x) = \sum\limits_{k=1}^{\infty}f_{k}(x) = \sum\limits_{k=1}^{\infty}\frac{1}{1 + k^2 x}$ prove:
+}{
+	\subproof{(a)}{
+		That $f(x)$ converges uniformly on $x \in [a,\infty)$ for all $a>0$
+	}{
+		Since $a \leqslant x$ for all $x \in [a,\infty)$, $\frac{1}{1+k^2 x} \leqslant \frac{1}{1+k^2 a}$ for all $k \in \bb{N}$. Thus, given any $\epsilon > 0$ let $k_o$ be given such that $\frac{1}{1+{k_o}^2 a} < \frac{\epsilon}{2}$
+	}
+}
+
+\end{document}

@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+%Custom command to shorten mathbb for basic number sets
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+%Custom command for defining problem{#}{theorem}proof:{text}blacksquare
+\newcommand{\proof}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2
+		\begin{enumerate}
+			\item[\underline{Proof:}]
+			#3
+			\begin{flushright}
+				$\blacksquare$
+			\end{flushright}
+		\end{enumerate}
+	\end{enumerate}
+}
+
+%Custom command for defining problem{prob#}{text}
+\newcommand{\problem}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2 
+		#3
+	\end{enumerate}
+}
+
+%Custom command for defining {item#}{header}proof:{text}blacksquare
+%does require \b{enum} ... \e{enum} or \problem
+\newcommand{\subproof}[3]{
+	\item[#1] #2
+	\item[\bf{Proof:}] 
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+\begin{document}
+
+\title{Math 440 -- Real Analysis II \\ \vspace{7px} \large{Homework 2}}
+\author{Amandeep Gill}
+\maketitle
+
+\problem{1}{Test the following series for convergence.}{
+	\subproof{(a)}{
+		$\sum\limits_{k=1}^{\infty}{\frac{k+1}{2k^3-k}}$ Does converge
+	}{
+		Let $a_k = \frac{1}{k^2}$, then 
+		$\lim\limits_{k \to \infty}{\frac{s_k}{a_k}} = 
+		\lim\limits_{k \to \infty}{\frac{(k+1)(k^2)}{2k^3-k}} = \frac{1}{2}$ \\
+		Since $\frac{1}{2} \in \mathbb{R^+}$, $\sum\limits_{k=1}^{\infty}{\frac{k+1}{2k^3-k}}$ converges by the Limit Comparison Test.
+	}
+	
+	\subproof{(b)}{
+		$\sum\limits_{n=1}^{\infty}{\frac{p^n}{n!}}$, $p \in \mathbb{R}$ Does converge
+	}{
+		Using the ratio test, let $L = \lim\limits_{k \to \infty}(\frac{p^{k+1}}{(k+1)!})(\frac{k!}{p^{k}}) = \lim\limits_{k \to \infty} \frac{p}{k + 1} = 0$ \\
+		Since $L < 1$, the series $\sum\limits_{n=1}^{\infty}{\frac{p^n}{n!}}$ does converge.
+	}
+}
+
+\problem{2}{
+		Suppose $a_k \geqslant 0$ for all $k \in \bb{N}$ and $\sum a_k < \infty$. Prove that the following converge or give an example where the series does not.
+	}{
+	\subproof{(a)}{
+		$\sum\limits_{k=1}^{\infty}{a_k}^2$ is guaranteed to converge
+	}{
+		By assumption $a_k \geqslant 0$ for all $k \in \bb{N}$, so $a_k = |a_k|$ and $\sum |a_k| = \sum a_k$. The series is thus absolutely convergent, so for some $m = max\{a_1, a_2, \ldots\}$, $m\sum a_k = \sum m a_k < \infty$. Since $a_k \leqslant m,\ {a_k}^2 \leqslant m a_k$, the series $\sum\limits_{k=1}^{\infty}{a_k}^2$ converges by the Weierstrass M-test.
+	}
+	
+	\subproof{(b)}{
+		$\sum\limits_{k=1}^{\infty}\frac{{a_k}^2}{1+a_k}$
+	}{
+		pf
+	}
+}
+
+\end{document}
