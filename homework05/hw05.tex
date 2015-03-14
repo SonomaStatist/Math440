@@ -1,52 +1,10 @@
 \documentclass[a4paper,12pt]{report}
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{graphicx}
-
-%Custom command to shorten mathbb for basic number sets
-\newcommand{\bb}[1]{\mathbb{#1}}
-
-%Custom command to create a subscript naught
-\newcommand{\naught}[1]{{#1}_{\circ}}
-
-%Custom command for defining problem{#}{theorem}proof:{text}blacksquare
-\newcommand{\proof}[3]{
-	\begin{enumerate}
-		\item[\bf{Problem #1}] #2
-		\item[\textbf{Proof:}]
-		#3
-		\begin{flushright}
-			$\blacksquare$
-		\end{flushright}
-	\end{enumerate}
-}
-
-%Custom command for defining problem{prob#}{text}
-\newcommand{\problem}[3]{
-	\begin{enumerate}
-		\item[\bf{Problem #1}] #2 
-		#3
-	\end{enumerate}
-}
-
-%Custom command for defining {item#}{header}proof:{text}blacksquare
-%does require \b{enum} ... \e{enum} or \problem
-\newcommand{\subproof}[3]{
-	\item[#1] #2
-	\item[\bf{Proof:}] 
-	#3 
-	\begin{flushright}
-		$\blacksquare$
-	\end{flushright}
-}
+\usepackage{../ssumath}
 
 \begin{document}
 
-\title{Math 440 -- Real Analysis II \\ \vspace{7px} \large{Homework 5}}
-\author{Amandeep Gill}
-\maketitle
+\mktitle{Math 440 -- Real Analysis II}{Homework 5}{Amandeep Gill}
 
 \problem{29}{
 	Find the radius of convergence of each of the following powerseries
@@ -139,14 +97,10 @@
 
 \proof{34}{
 	For each $n \in \bb{N}$, let $\vec{e_n}$ be the sequence in $l^2$ defined such that \\
-	\begin{displaymath}
-		\vec{e_n}(k) = \left\{
-			\begin{array}{lr}
-				0 & \text{if } k \neq n \\
-				1 & \text{if } k = n
-			\end{array}
-		\right.
-	\end{displaymath}
+	\piecewise{\vec{e_n}(k)}{
+		\pwcond{0}{k \neq n} \\
+		\pwcond{1}{k = n}
+	}
 	
 	Show that the Bolzano-Weierstrass theorem fails in $l^2$
 }{
@@ -156,13 +110,6 @@
 }
 
 \end{document}
-
-
-
-
-
-
-
 
 
 

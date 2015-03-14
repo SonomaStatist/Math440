@@ -1,0 +1,65 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+%Generate the title page or title header (depends on if using doctype report or article, respectively)
+\newcommand{\mktitle}[3]{
+	\title{#1 \\ \vspace{7px} \large{#2}}
+	\author{#3}
+	\maketitle	
+}
+
+%Shorten mathbb for basic number sets
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+%Add a subscript naught to the argument
+\newcommand{\naught}[1]{{#1}_{\circ}}
+
+%Shorthand for defining problem{#}{hypothesis}proof:{text}blacksquare
+\newcommand{\proof}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2
+		\begin{enumerate}
+			\item[\textbf{Proof:}]
+			#3
+			\begin{flushright}
+				$\blacksquare$
+			\end{flushright}
+		\end{enumerate}
+	\end{enumerate}
+}
+
+%Shorthand for defining problem{#}{descrition}{solution}
+\newcommand{\problem}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2 
+		#3
+	\end{enumerate}
+}
+
+%Shorthand for defining {item#}{sub-hypothesis}proof:{text}blacksquare
+%does require \b{enum} ... \e{enum} or \problem
+\newcommand{\subproof}[3]{
+	\item[#1] #2
+	\item[\bf{Proof:}] 
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+%Macro for writing piecewise functions, provides '#1 = {#2'
+\newcommand{\piecewise}[2]{
+	\begin{displaymath}
+	#1 = \left\{
+	\begin{array}{lr}
+	#2
+	\end{array}\right.
+	\end{displaymath}
+}
+
+%Condition within a piecewise function, looks like '#1 if #2'
+%only for use withing the second argument of \piecewise
+\newcommand{\pwcond}[2]{
+	#1 & \text{if } #2
+}
