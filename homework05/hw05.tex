@@ -1,0 +1,173 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+%Custom command to shorten mathbb for basic number sets
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+%Custom command to create a subscript naught
+\newcommand{\naught}[1]{{#1}_{\circ}}
+
+%Custom command for defining problem{#}{theorem}proof:{text}blacksquare
+\newcommand{\proof}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2
+		\item[\textbf{Proof:}]
+		#3
+		\begin{flushright}
+			$\blacksquare$
+		\end{flushright}
+	\end{enumerate}
+}
+
+%Custom command for defining problem{prob#}{text}
+\newcommand{\problem}[3]{
+	\begin{enumerate}
+		\item[\bf{Problem #1}] #2 
+		#3
+	\end{enumerate}
+}
+
+%Custom command for defining {item#}{header}proof:{text}blacksquare
+%does require \b{enum} ... \e{enum} or \problem
+\newcommand{\subproof}[3]{
+	\item[#1] #2
+	\item[\bf{Proof:}] 
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+\begin{document}
+
+\title{Math 440 -- Real Analysis II \\ \vspace{7px} \large{Homework 5}}
+\author{Amandeep Gill}
+\maketitle
+
+\problem{29}{
+	Find the radius of convergence of each of the following powerseries
+}{
+	\subproof{(a)}{
+		$\sum\limits_{k=1}^{\infty} \frac{3^k}{k^3} x^k$
+	}{
+		Since $\frac{3^k}{k^3} x^k = \frac{(3x)^k}{k^3}$, if $|x| \leqslant 1/3$ then $|3x| \leqslant 1$ and $\frac{|3x|^k}{k^3} \leqslant \frac{1}{k^3}$ for all $k$. The series is thus uniformly convergent for $x \in [-\frac{1}{3}, \frac{1}{3}]$ by the Weierstrass M-test. For $x \notin [-\frac{1}{3},\frac{1}{3}]$, $|3x| > 1$ which leads to $\lim\limits_{k \to \infty} \frac{|3x|^k}{k^3}$ being unbounded and the series being divergent by the Limit Test.
+	}
+	\subproof{(b)}{
+		$\sum\limits_{k=0}^{\infty}\frac{1}{4^k}(x+1)^{2k}$
+	}{
+		As with part (a), using the product rule gives $\frac{1}{4^k}(x+1)^{2k} = \left(\frac{x+1}{2}\right)^{2k}$. Because this is geometric, for the series to be convergent $\left|\frac{x+1}{2}\right|$ must be strictly less than 1. Therefore, the series converges for $x \in (-3,1)$ and is otherwise divergent.
+	}
+	\subproof{(c)}{
+		$\sum\limits_{k=1}^{\infty}\left(1-\frac{1}{k}\right)^k x^k$
+	}{
+		By algebra, $\left(1-\frac{1}{k}\right)^k x^k = \left(x-\frac{x}{k}\right)^k$. Since $\lim\limits_{k \to \infty}\left(x-\frac{x}{k}\right) = x$, then $\lim\limits_{k \to \infty} \left(x-\frac{x}{k}\right)^k \neq 0$ if $x \geqslant 1$ and the series is divergent. Given that $\left|x-\frac{x}{k}\right|^k \leqslant |x|^k$ for all $k \in \bb{N}$, and $\sum\limits_{k=1}^{\infty} x^k < \infty$ for all $x \in (-1,1)$, the series $\sum\limits_{k=1}^{\infty}\left(1-\frac{1}{k}\right)^k x^k$ is uniformly convergent on $x \in (-1,1)$ by the Weierstrass M-test.
+	}
+}
+
+\pagebreak
+
+\proof{30}{
+	Show that $|\sqrt[3]{1+x} - (1 + \frac{1}{3}x - \frac{1}{9}x^2)| < \frac{5}{81}x^3$ for all $x > 0$, and approximate $\sqrt[3]{1.2}$ and $\sqrt[3]{2}$.
+}{
+	Let $f(x) = \sqrt[3]{1+x}$. Then the $n^\text{th}$-order Taylor Polynomial at 0 is $\sum\limits_{k=0}^{\infty}\frac{f^{(k)}(0)}{k!}(x - 0)^k$. Thus, $T_2(f,0)(x) = 1 + \frac{x}{3} - \frac{x^2}{9}$ with the remainder $R_2(f,0)(x) = \frac{f^{(3)}(\xi)}{3!}x^{3} = \frac{5x^3}{81(1+\xi)^{\frac{8}{3}}} < \frac{5}{81}x^3$ for all $\xi \in (0,\infty)$. From $f(x) = T_2(f,0)(x) + R_2(f,0)(x)$ we have that $f - T_2 = R_2 < \frac{5}{81}x^3$.
+	\\
+	\item $\sqrt[3]{1.2} \approx 1.24$ with an error less than 0.1067
+	\item $\sqrt[3]{2} \approx 1.22$ with an error less than 0.4938
+}
+
+\problem{31}{
+	Determine all values of $p \in \bb{R}$ such that the given sequence in in $l^2$
+}{
+	\subproof{(a)}{
+		$\left\{p^k\right\}_{k=1}^{\infty}$ for $p \in (-1,1)$
+	}{
+		$\left\{p^k\right\}_{k=1}^{\infty} \in l^2$ if and only if $\sum\limits_{k=1}^{\infty}p^{2k} < \infty$. Since this is a geometric series, it converges when $p^2 \in (-1,1)$, which is equivalent to $p \in (-1,1)$.
+	}
+	\subproof{(a)}{
+		$\left\{\frac{k^p}{p^k}\right\}_{k=1}^{\infty}$ for $p \in (-\infty,-1]\cup(1,\infty)$
+	}{
+		$\left\{\frac{k^p}{p^k}\right\}_{k=1}^{\infty} \in l^2$ if and only if $\sum\limits_{k=1}^{\infty}\left(\frac{k^p}{p^k}\right)^2 = \sum\limits_{k=1}^{\infty}\frac{k^{2p}}{p^{2k}} < \infty$. Using the Ratio Test yields $\lim\limits_{k \to \infty}\left(\frac{(k+1)^{2p}}{p^{2(k+1)}}\right)\left(\frac{p^{2k}}{k^{2p}}\right) = \frac{1}{p^2}$, so the series converges when $|p| > 1$. Adding in the special case where $p = -1$ and $\sum\limits_{k=1}^{\infty}\frac{k^{2p}}{p^{2k}} = \sum\limits_{k=1}^{\infty}\frac{1}{k^2}$, the sequence is in $l^2$ when $p \in (-\infty,-1]\cup(1,\infty)$
+	}
+}
+
+\pagebreak
+
+\problem{32}{
+	For each $\vec{x} = (x_1, x_2, \ldots, x_n) \in \bb{R}^n$, define $||\vec{x}|| = \max\{|x_1|, |x_2|, \ldots, |x_n|\}$. Prove $||\cdot||$ satisfies the  a norm on $\bb{R}^n$.
+}{
+	\subproof{(a)}{
+		$||\vec{x}|| \geqslant 0$ for all $\vec{x} \in \bb{R}^n$.
+	}{
+		For all $i$, $|x_i| \geqslant 0$ and by definition $||\vec{x}|| \geqslant |x_i|$, so $||\vec{x}|| \geqslant 0$.
+	}
+	\subproof{(b)}{
+		$||\vec{x}|| = 0$ if and only if $\vec{x} = \vec{0}$.
+	}{
+		$||\vec{x}|| = 0$ $\Leftrightarrow$ for all $i$, $|x_i| \leqslant 0$, so $|x_i| = 0$ and $\vec{x} = \vec{0}$.
+	}
+	\subproof{(c)}{
+		$||c \cdot \vec{x}|| = |c| \cdot ||\vec{x}||$ for all $c \in \bb{R}$ and all $\vec{x} \in \bb{R}^n$.
+	}{
+		$||c \cdot \vec{x}|| = ||(cx_1, cx_2, \ldots, cx)|| = \max\{|cx_1|, |cx_2|, \ldots, |cx_n|\} = |cx_i| = |c|\cdot|x_i| = |c|\cdot||\vec{x}||$
+	}
+	\subproof{(d)}{
+		$||\vec{x} + \vec{y}|| \leqslant ||\vec{x}|| + ||\vec{y}||$ for all $\vec{x},\vec{y} \in \bb{R}^n$
+	}{
+		$||\vec{x} + \vec{y}|| = |x_i + y_i| \leqslant |x_i| + |y_i| \leqslant ||\vec{x}|| + ||\vec{y}||$ since $|x_i| \leqslant ||\vec{x}||$ and $|y_i| \leqslant ||\vec{y}||$.
+	}
+}
+
+\problem{33}{
+	Let $(X, ||\cdot||)$ be a normed linear space.
+}{
+	\item[(a)] A sequence $\{\vec{x_n}\}_{n=1}^{\infty}$ of vectors converges to $\vec{x} \in X$ if for all $\epsilon > 0$, there exists $\naught{n} \in \bb{N}$ and $m > \naught{n}$ such that $||\vec{x_m} - \vec{x}|| < \epsilon$.
+	
+	A sequence $\{\vec{x_n}\}_{n=1}^{\infty}$ of vectors is Cauchy if for all $\epsilon > 0$, there exists $\naught{n} \in \bb{N}$ and $m,n > \naught{n}$ such that $||\vec{x_m} - \vec{x_n}|| < \epsilon$.
+	
+	\subproof{(b)}{
+		If a sequence $\{\vec{x_n}\}_{n=1}^{\infty}$ of vectors converges to $\vec{x} \in X$, then it is Cauchy.
+	}{
+		Let $\{\vec{x_n}\}_{n=1}^{\infty}$ sequence of vectors that converges to $\vec{x} \in X$. Then there exists $\epsilon > 0$ and $\naught{n} \in N$ such that for all $n_1, n_2 > \naught{n}$, $||\vec{x_{n_1}} - \vec{x}|| < \frac{\epsilon}{2}$ and $||\vec{x_{n_2}} - \vec{x}|| < \frac{\epsilon}{2}$. This gives $||\vec{x_{n_1}} - \vec{x}|| + ||\vec{x_{n_2}} - \vec{x}|| < \frac{\epsilon}{2} + \frac{\epsilon}{2}$. Since $||\vec{x_{n_2}}-\vec{x}|| = |-1| \cdot ||\vec{x}-\vec{x_{n_2}}||$, we have $\epsilon > ||\vec{x_{n_1}} - \vec{x}|| + ||\vec{x} - \vec{x_{n_2}}|| \geqslant ||\vec{x_{n_{1}}} - \vec{x_{n_{2}}}||$
+	}
+}
+
+\pagebreak
+
+\proof{34}{
+	For each $n \in \bb{N}$, let $\vec{e_n}$ be the sequence in $l^2$ defined such that \\
+	\begin{displaymath}
+		\vec{e_n}(k) = \left\{
+			\begin{array}{lr}
+				0 & \text{if } k \neq n \\
+				1 & \text{if } k = n
+			\end{array}
+		\right.
+	\end{displaymath}
+	
+	Show that the Bolzano-Weierstrass theorem fails in $l^2$
+}{
+	Let bounded in $l^2$ be defined as $||\vec{x_n}||_2 \leqslant c$ for some $c \geqslant 0$ and all $n \in \bb{N}$. By this definition of bounded, since $||\vec{e_n}||_2 = 1$ for all $n$ then $\{\vec{e_n}\}$ is bounded and monotone.
+	
+	Let $\epsilon = \sqrt{2}$ and $\naught{n} \in \bb{N}$ with $\naught{n} < n < m$, then $||\vec{e_n} - \vec{e_m}||_2 = \sqrt{0+0+\cdots+1+\cdots+1+\cdots+0} = \sqrt{2} = \epsilon$. Thus the sequence $\{\vec{e_n}\}$ is not Cauchy and therefore does not converge. Because it this sequence is both bounded and monotone, but not convergent, the Bolzano-Weierstrass Theorem does not hold true in $l^2$.
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
