@@ -59,7 +59,7 @@
 \newcommand{\piecewise}[2]{
 	\begin{displaymath}
 	#1 = \left\{
-	\begin{array}{lr}
+	\begin{array}{lcr}
 	#2
 	\end{array}\right.
 	\end{displaymath}
@@ -68,7 +68,7 @@
 %Condition within a piecewise function, looks like '#1 if #2'
 %only for use within the second argument of \piecewise
 \newcommand{\pwcond}[2]{
-	#1 & \text{if } #2 \\
+	#1 & \text{if} & #2 \\
 }
 
 %Macro for writing long, multistep equation transformations 

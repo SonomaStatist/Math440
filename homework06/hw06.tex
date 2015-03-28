@@ -56,13 +56,36 @@
 \problem{38}{
 	Let $f(x) = \sin(\pi x),\ \phi_1(x) = 1$, and $\phi_2(x) = x$. Find $c_1$ and $c_2$ such that $S_2(x) = c_1 \phi_1(x) + c_2 \phi_2(x)$ gives the best approximation of $f$ on $[-1,1]$.
 }{
-	\item[\bf{Solution:}] Need to choose $c_1$ and $c_2$ such that \\ $\int\limits_{-1}^{1}\sin^2(\pi x)dx - {c_1}^2\left(\int\limits_{-1}^{1}{f_1}^2(x)\right)dx - {c_2}^2\left(\int\limits_{-1}^{1}{f_2}^2(x)\right)dx$ is minimized. Since $\int\limits_{-1}^{1}\sin^2(\pi x)dx = 1$
+	\item[\bf{Solution:}] Need to choose $c_1$ and $c_2$ such that
+	
+	$\int\limits_{-1}^{1}\sin^2(\pi x)dx - {c_1}^2\int\limits_{-1}^{1}{f_1}^2(x)dx - {c_2}^2\int\limits_{-1}^{1}{f_2}^2(x)dx$ is minimized.
+	
+	$\int\limits_{-1}^{1}{f_1}^2(x)dx = 2$ and $\int\limits_{-1}^{1}{f_2}^2(x)dx = 2$
+	
+	Since $\int\limits_{-1}^{1}\sin^2(\pi x)dx = 1$ we need $2c_1 + 2c_2 = 1$ or $c_1 = \frac{1}{2} - c_2$, so choose \underline{$c_1 = 0$ and $c_2 = \frac{1}{2}$}
 }
 
 \proof{40}{
 	If $f$ and $f_n$ for $n \in \bb{N}$ are Riemann integrable functions on $[a,b]$, and $\{f_n\}$ converges uniformly to $f$ on $[a,b]$ then $\{f_n\}$ converges in the mean to $f$ on $[a,b]$.
 }{
 	Let $f$ and $f_n$ for $n \in \bb{N}$ be Riemann integrable functions on $[a,b]$, where $\{f_n\}$ converges uniformly to $f$ on $[a,b]$, then there exists a number $\naught{n}$ such that for all $\epsilon > 0$ and $n \in \bb{N}$, if $n > \naught{n}$ then $\abs{f - f_n} < \frac{\sqrt{\epsilon}}{\sqrt{b - a}}$. From this, we get $\int\limits_{a}^{b}(f - f_n)^2dx < \int\limits_{a}^{b}(\frac{\sqrt{\epsilon}}{\sqrt{b - a}})^2dx = {\left.\frac{\epsilon x}{b-a}\right|}_a^b = \epsilon$. Therefore, $\lim\limits_{n \to \infty}\int\limits_{a}^{b}(f - f_n)^2dx = 0$ and $\{f_n\}$ converges in the mean to $f$ on $[a,b]$. 
+}
+
+\pagebreak
+
+\proof{41}{
+	For $n \in \bb{N}$, let $f_n$ be the function 
+	
+	\piecewise{f_n}{
+		\pwcond{\sqrt{n}}{0 < x < \frac{1}{n}}
+		\pwcond{0}{x \geqslant \frac{1}{n}}
+	}
+	
+	defined on $[0,1]$. The sequence of functions $\{f_n\}$ converges pointwise to $f(x) = 0$, but does not converge in the mean.
+}{
+	Let $x \in [0,1]$ and $\epsilon > 0$ be given. If $x = 0$, then $f_n(x) = 0$ and $\abs{f_n(x) - 0} = 0 < \epsilon$ for all $n \in \bb{N}$. Otherwise, using 340 Facts there exists an $\naught{n} \in \bb{N}$ such that $\frac{1}{\naught{n}} < x$. Therefore, for all $n > \naught{n}$, $f_n(x) = 0$, so $\abs{f_n(x) - 0} = 0 < \epsilon$, and $\{f_n\}$ is thus pointwise convergent to 0.
+	
+	However, for all $n \in \bb{N}$, $\int\limits_{0}^{1}\left(0 - f_n(x)\right)^2dx = \frac{1}{n} \cdot n = 1$, and \\ $\lim\limits_{n \to \infty}\int\limits_{0}^{1}\left(f_n(x)\right)^2dx = 1$. Thus $\{f_n\}$ does not converge in the mean to 0.
 }
 
 \end{document}
