@@ -1,0 +1,70 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Homework 6}{Amandeep Gill}
+
+\proof{36}{
+	Let $X$ be a vector space over $\bb{R}$ with inner product $\abrace{\ ,\ }$, where $\norm{\cdot}$ is defined for all $\vec{x} \in X$ as $\norm{\vec{x}} = \sqrt{\abrace{\vec{x},\vec{x}}}$.  Then for all $\vec{x},\vec{y} \in X$, $\norm{\vec{x} + \vec{y}}^2 = \norm{\vec{x}}^2 + \norm{\vec{y}}^2$ if and only if $\abrace{\vec{x},\vec{y}} = 0$.
+}{
+	For all $\vec{x},\vec{y} \in X$, using the definition of $||\cdot||$ on $X$, 
+	
+	\longeq{
+		\eqstep{{||\vec{x} + \vec{y}||}^2}{\abrace{\vec{x} + \vec{y}, \vec{x} + \vec{y}}}
+		\eqstep{}{\abrace{\vec{x},\vec{x} + \vec{y}} + \abrace{\vec{y},\vec{x} + \vec{y}}}
+		\eqstep{}{\abrace{\vec{x},\vec{x}} + \abrace{\vec{x},\vec{y}} + \abrace{\vec{y},\vec{x}} + \abrace{\vec{y},\vec{y}}}
+		\eqstep{}{\norm{\vec{x}}^2 + 2\abrace{\vec{x},\vec{y}} + \norm{\vec{y}}^2}
+	}
+	
+	As this is a chain of strict equality, and since the inner product is a non-negative function, $\norm{\vec{x} + \vec{y}}^2 = \norm{\vec{x}}^2 + \norm{\vec{y}}^2$ only if $\abrace{\vec{x},\vec{y}} = 0$.
+}
+
+\problem{37}{
+	Let $X$ be a vector space over $\bb{R}$ with inner product $\abrace{\ ,\ }$, and define $\norm{\cdot}$ as $\norm{\vec{x}} = \sqrt{\abrace{\vec{x},\vec{x}}}$. $\norm{\cdot}$ is a norm on $X$.
+}{
+	\subproof{(a)}{
+		$\norm{\vec{x}} \leqslant 0$ for all $\vec{x} \in X$
+	}{
+		This follows from the fact that $0 \leqslant \abrace{\vec{x},\vec{x}}$ for all $\vec{x} \in X$, and that the square root function has no negative outputs on the non-negative reals.
+	}
+	
+	\subproof{(b)}{
+		$\norm{\vec{x}} = 0$ if and only if $\vec{x} = \vec{0}$
+	}{
+		This follows from the fact that $\abrace{\vec{x},\vec{x}} = 0$ if and only if $\vec{x} = \vec{0}$, and that the square root function has only one zero, which is at 0.
+	}
+	
+	\subproof{(c)}{
+		$\norm{c \cdot \vec{x}} = \abs{c} \cdot \norm{\vec{x}}$ for all $c \in \bb{R}$ and all $\vec{x} \in X$
+	}{
+		Let $c \in \bb{R}$ and $\vec{x} \in X$, then $\norm{c \cdot \vec{x}} = \sqrt{\abrace{c\vec{x},c\vec{x}}} = \sqrt{c^2\abrace{\vec{x}.\vec{x}}}$. This is acceptable because it is a double application of property (d) of Orthogonal Functions twice. Since $\sqrt{c^2} = \abs{c}$, $\norm{c \cdot \vec{x}} = \abs{c} \cdot \norm{\vec{x}}$.
+	}
+}
+
+\pagebreak
+
+\problem{37}{continued}{
+	\subproof{(d)}{
+		$\norm{\vec{x} + \vec{y}} \leqslant \norm{\vec{x}} + \norm{\vec{y}}$ for all $\vec{x},\vec{y} \in X$
+	}{
+		Let $\vec{x},\vec{y} \in X$. By previous work, $\norm{\vec{x} + \vec{y}}^2 = \norm{\vec{x}}^2 + 2\abrace{\vec{x},\vec{y}} + \norm{\vec{y}}^2$. Because $\abrace{\vec{x},\vec{y}} \leqslant \norm{\vec{x}} \norm{\vec{y}}$ by the Cauchy-Schwartz Inequality, so this gives $\norm{\vec{x} + \vec{y}}^2 \leqslant \norm{\vec{x}}^2 + 2\norm{\vec{x}} \norm{\vec{y}} + \norm{\vec{y}}^2 = \left(\norm{\vec{x}} + \norm{\vec{y}}\right)^2$. Thus, for all $\vec{x}, \vec{y} \in X$, $\norm{\vec{x} + \vec{y}} \leqslant \norm{\vec{x}} + \norm{\vec{y}}$.
+	}
+}
+
+\problem{38}{
+	Let $f(x) = \sin(\pi x),\ \phi_1(x) = 1$, and $\phi_2(x) = x$. Find $c_1$ and $c_2$ such that $S_2(x) = c_1 \phi_1(x) + c_2 \phi_2(x)$ gives the best approximation of $f$ on $[-1,1]$.
+}{
+	\item[\bf{Solution:}] Need to choose $c_1$ and $c_2$ such that \\ $\int\limits_{-1}^{1}\sin^2(\pi x)dx - {c_1}^2\left(\int\limits_{-1}^{1}{f_1}^2(x)\right)dx - {c_2}^2\left(\int\limits_{-1}^{1}{f_2}^2(x)\right)dx$ is minimized. Since $\int\limits_{-1}^{1}\sin^2(\pi x)dx = 1$
+}
+
+\proof{40}{
+	If $f$ and $f_n$ for $n \in \bb{N}$ are Riemann integrable functions on $[a,b]$, and $\{f_n\}$ converges uniformly to $f$ on $[a,b]$ then $\{f_n\}$ converges in the mean to $f$ on $[a,b]$.
+}{
+	Let $f$ and $f_n$ for $n \in \bb{N}$ be Riemann integrable functions on $[a,b]$, where $\{f_n\}$ converges uniformly to $f$ on $[a,b]$, then there exists a number $\naught{n}$ such that for all $\epsilon > 0$ and $n \in \bb{N}$, if $n > \naught{n}$ then $\abs{f - f_n} < \frac{\sqrt{\epsilon}}{\sqrt{b - a}}$. From this, we get $\int\limits_{a}^{b}(f - f_n)^2dx < \int\limits_{a}^{b}(\frac{\sqrt{\epsilon}}{\sqrt{b - a}})^2dx = {\left.\frac{\epsilon x}{b-a}\right|}_a^b = \epsilon$. Therefore, $\lim\limits_{n \to \infty}\int\limits_{a}^{b}(f - f_n)^2dx = 0$ and $\{f_n\}$ converges in the mean to $f$ on $[a,b]$. 
+}
+
+\end{document}
+
+

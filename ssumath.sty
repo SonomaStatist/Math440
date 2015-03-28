@@ -15,6 +15,15 @@
 %Add a subscript naught to the argument
 \newcommand{\naught}[1]{{#1}_{\circ}}
 
+%Shorthand for left and right angle brackets
+\newcommand{\abrace}[1]{\left\langle #1 \right\rangle}
+
+%Absolute value symbol
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+%Shorthand for the norm function, ie: ||x||
+\newcommand{\norm}[1]{\left|\left| #1 \right|\right|}
+
 %Shorthand for defining problem{#}{hypothesis}proof:{text}blacksquare
 \newcommand{\proof}[3]{
 	\begin{enumerate}
@@ -38,7 +47,7 @@
 %Shorthand for defining {item#}{sub-hypothesis}proof:{text}blacksquare
 %does require \b{enum} ... \e{enum} or \problem
 \newcommand{\subproof}[3]{
-	\item[#1] #2
+	\item[\bf{#1}] #2
 	\item[\bf{Proof:}] 
 	#3 
 	\begin{flushright}
@@ -57,7 +66,22 @@
 }
 
 %Condition within a piecewise function, looks like '#1 if #2'
-%only for use withing the second argument of \piecewise
+%only for use within the second argument of \piecewise
 \newcommand{\pwcond}[2]{
-	#1 & \text{if } #2
+	#1 & \text{if } #2 \\
+}
+
+%Macro for writing long, multistep equation transformations 
+%eg: x = y, x = yz + w, x = ...
+\newcommand{\longeq}[1]{
+	\begin{displaymath}
+	\begin{array}{rl}
+	#1
+	\end{array}
+	\end{displaymath}
+}
+
+%single line for each equation step, of the form 'x = y' or '  = y'
+\newcommand{\eqstep}[2]{
+	#1 = & #2 \\
 }
