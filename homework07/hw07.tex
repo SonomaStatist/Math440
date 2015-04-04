@@ -1,0 +1,91 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Homework 7}{Amandeep Gill}
+
+\proof{42}{
+	If $\{I_n\}_n$ is a finite or countable collection of disjoint open intervals with $\bigcup_n I_n \subset (a,b)$ then $\sum\limits_{n} m(I_n) \leqslant m((a,b))$
+}{
+	Let $\{I_n\}$ be a countable set of disjoint open intervals such that $\bigcup_n I_n \subset (a,b)$, and each interval $I_i = (a_i,b_i)$ where $i \in \bb{N}$ and $i \leqslant n$.
+	
+	Because each interval is disjoint and each $a_i$ and $b_i$ is bounded below by $a$ and above by $b$, the intervals can be arranged in such a way that $a \leqslant a_1 \leqslant b_1 \leqslant a_2 \leqslant b_2 \leqslant \cdots \leqslant b$. By definition of measure $m(I_i) = b_i - a_i$, so $\sum\limits_{n} m(I_n) = (b_1 - a_1) + (b_2 - a_2) + \cdots$. From this, we can see that $(b_1 - a_1) + (b_2 - a_2) = (b_2 - a_1) - (a_2 - b_1) \leqslant (b_2 - a_1)$. Similarly, $(b_1 - a_1) + (b_2 - a_2) + (b_3 - a_3) \leqslant (b_2 - a_1) + (b_3 - a_3) \leqslant (b_3 - a_1)$. Continuing the pattern $(b_1 - a_1) + \cdots + (b_i - a_i) \leqslant (b_i - a_1)$, and since $a \leqslant a_1 \leqslant b_i \leqslant b$, for all $i$, $(b_i - a_1) \leqslant (b - a) = m((b - a))$. Therefore $\sum\limits_{n} m(I_n) \leqslant m((a,b))$.
+}
+
+\proof{43}{
+	The measure of the Cantor Set in $[0,1]$ is 0.
+}{
+	Let $P$ denote the Cantor Set. Defined as a sequence of steps where intervals are removed from the set $[0,1]$, then let
+	
+	$P_1 = (\frac{1}{3},\frac{2}{3})$ \\
+	$P_2 = \left((\frac{1}{9},\frac{2}{9}) \cup (\frac{1}{3},\frac{2}{3}) \cup (\frac{7}{9},\frac{8}{9})\right)$ \\
+	$P_3 = \left((\frac{1}{27},\frac{2}{27}) \cup (\frac{1}{9},\frac{2}{9}) \cup (\frac{7}{27},\frac{8}{27}) \cup (\frac{1}{3},\frac{2}{3}) \cup (\frac{13}{27},\frac{14}{27}) \cup (\frac{7}{9},\frac{8}{9}) \cup (\frac{25}{27},\frac{26}{27})\right)$ \\
+	$P_4 = \ldots$ \\
+	Such that $P = [0,1] \backslash \left(\lim\limits_{n \to \infty}P_n\right)$
+	
+	Since $P_n$ is a finite union of disjoint open sets, 
+	
+	$m(P_n) = \frac{1}{3} + \frac{2}{9} + \frac{4}{27} + \cdots$ \\
+	$m(P_n) = \sum\limits_{k=0}^{n} \frac{1}{3} \left(\frac{2}{3}\right)^k$
+	
+	Therefore $\lim\limits_{n \to \infty} m(P_n) = \sum\limits_{k=0}^{\infty} \frac{1}{3} \left(\frac{2}{3}\right)^k = \frac{\frac{1}{3}}{1 - \frac{2}{3}} = 1$
+	
+	Finally, by Definition 10.2.10, $m(P) = m([0,1]) - \lim\limits_{n \to \infty} m(P_n) = 0$.
+}
+
+\pagebreak
+
+\proof{44}{
+	If $E$ is a finite subset of $\bb{R}$ then $m(E) = 0$.
+}{
+	Let $E = \{x_1, x_2, \ldots, x_n\}$ be a finite, ordered set of $n$ points in $\bb{R}$ such that for some $a,b \in \bb{R}$, $a < x_1 < x_2 < \cdots < x_n < b$. Then $(a,b) \backslash E = (a,x_1) \cup (x_1,x_2) \cup (x_2,x_3) \cup \cdots \cup (x_{n-1},x_n) \cup (x_n,b)$. The measure of $(a,b) = b-a$ by the definition of measure, and since $(a,b) \backslash E$ is a disjoint union of open sets, $m\left((a,b) \backslash E\right) = (x_1 - a) + (x_2 - x_1) + \cdots + (b - x_n)$. Given that this is a telescoping sum, $m\left((a,b) \backslash E\right) = b - a$. Because finite sets are compact, $m(E) = m((a,b)) - m((a,b) \backslash E) = 0$.
+}
+
+\problem{45}{
+	Calculate the following measures
+}{
+	\item[\textbf{(a)}] $m(\{1\}\cup[2,5]) = 3$ \\
+	Since $\{1\}$ and $[2,5]$ are disjoint, the measure of the union is the $m(\{1\}) + m([2,5])$, which is $0 + 3$ by p.44 and Definition 10.2.1 respectively.
+	
+	\item[\textbf{(b)}] $m([1,2) \cup (3,4]) = 2$ \\
+	Since intervals of the form $[a,b)$ can be written as $\{a\} \cup (a,b)$, by previous work then $m([a,b)) = b - a$
+	
+	\item[\textbf{(c)}] where $P$ is the Cantor Set, $m([0,1] \backslash P) = 1$ \\
+	Since $P^c = [0,1] \backslash P$ is a union of open sets, $P^c$ is an open set. Therefore, by Theorem 10.2.15 $m(P \cap [0,1]) + m(P^c \cap [0,1]) = 1$, and because $m(P \cap [0,1]) = m(P)$ and $P^c \cap [0,1] = P^c$, $m(P^c) = 1$
+}
+
+\pagebreak
+
+\proof{46}{
+	If $K_1$ and $K_2$ are disjoint compact subsets of $\bb{R}$, then $m(K_1 \cup K_2) = m(K_1) + m(K_2)$
+}{
+	Let $K_1, K_2$ be disjoint, compact subsets of $\bb{R}$. Since the sets are compact in $\bb{R}$, they are both bounded and there exists $U = (a,b)$ such that $K_1 \cup K_2 \subset U$. Then by Definition 10.2.10, $m(K_1 \cup K_2) = m(U) - m(U \backslash (K_1 \cup K_2))$. However because, $U \backslash (K_1 \cup K_2) = (U \backslash K_1) \cap (U \backslash K_2)$, and since $(U \backslash K_1)$ and $(U \backslash K_2)$ open sets $m(U \backslash K_1) + m(U \backslash K_2) = m(U) + m((U \backslash K_1) \cap (U \backslash K_2)) = m(U) + m(U \backslash (K_1 \cup K_2))$ by Theorem 10.2.9. Using the fact that $m(K_1) = m(U) - m(U \backslash K_1)$ and $m(K_2) = m(U) - m(U \backslash K_2)$, we have that 
+	
+	\longeq{
+		\eqstep{m(K_1 \cup K_2)}{m(U) - m(U \backslash (K_1 \cup K_2))} \\
+		\eqstep{}{2m(U) - (m(U \backslash K_1) + m(U \backslash K_2))} \\
+		\eqstep{}{2m(U) - (2m(U) + m(K_1) + m(K_1))} \\
+		\eqstep{}{m(K_1) + m(K_1)}
+	}
+}
+
+\proof{47}{
+	Let $E = \{\frac{1}{n}\ :\ n \in \bb{N}\}$, calculate $\lambda^*(E)$ and $\lambda_*(E)$
+}{
+	Let $m \in \bb{N}$ and $K_{m} = \{\frac{1}{n}\ :\ n < m\}$, since $K_m$ is a finite, compact subset of $E$, and because $m(K_m) = 0$ is true for all $m \in \bb{N}$, then $\lambda_*(E) = 0$ as $\lambda_*(E) = \max\{m(K_m)\}$ by definition.
+	
+	Let $\epsilon > 0$ be given and $U = \bigcup\limits_{n=1}^{\infty}\left(\frac{1}{n} - \epsilon, \frac{1}{n} + \epsilon\right)$. As proved previously, there exists an $m \in \bb{N}$ such that for all $n > m$, $\abs{\frac{1}{n} - 0} < \epsilon$, which means that $\bigcup\limits_{n=m}^{\infty}\left(\frac{1}{n} - \epsilon, \frac{1}{n} + \epsilon\right) \subset (-\epsilon, 2\epsilon)$. Therefore, by Theorem 10.2.6, $m(U) \leqslant m\epsilon + 3\epsilon$. As $\lambda^*(E) \leqslant m(U)$ and because $\epsilon$ is arbitrary, $\lambda^*(E) = 0$.
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
