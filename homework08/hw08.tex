@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Homework 7}{Amandeep Gill}
+
+\proof{48}{
+	If $E$ be a bounded set and $\epsilon > 0$ then there exists an open set $U \supset E$ and a compact set $K \subset E$ such that $\lambda^*(E) \leqslant m(U) < \lambda^*(E) + \epsilon$ and $\lambda_*(E) - \epsilon < m(K) \leqslant \lambda_*(E)$
+}{
+	Let $E$ be a bounded set and $\epsilon > 0$ be given. Since $E$ is bounded, there exists $a,b \in \bb{R}$ such that for all $x \in E$, $a < x < b$. Thus $(a,b)$ is an open superset of $E$ and hence $\lambda^*(E) = \inf\{m(U)\ :\ U$ is open and $U \supset E\}$ exists. By definition of infimum, there exists an open set $U \supset E$ such that $|\lambda^*(E) - m(U)| < \epsilon$, and $\lambda^*(E) \leqslant m(U) < \lambda^*(E) + \epsilon$.
+	
+	The set of all compact sets $K \subset E$ is trivially non-empty because $\varnothing$ is a finite and as such compact, set such that $\varnothing \subset E$. Therefore, $\lambda_*(E) = \sup\{m(K)\ :\ K$ is compact and $K \subset E\}$ exists, and by definition of supremum, there exists a compact set $K \subset E$ such that $|\lambda_*(E) - m(K)| < \epsilon$, and $\lambda_*(E) - \epsilon < m(K) \leqslant \lambda_*(E)$.
+}
+
+\problem{49}{
+	Fill in the missing pieces from the classroom proofs.
+}{
+	\subproof{(a)}{
+		 From the proof that $\lambda^*(U) = \lambda_*(U) = m(U)$ for all open $U$, show specifically how to choose $J_n$ so that the following statement is true:
+		\begin{quote}
+			``For each $n = 1, 2, \ldots, N$, choose a closed, bounded interval $J_n \subset I_n$ such that $\sum\limits_{n=1}^{N}m(J_n) > \left( \sum\limits_{n=1}^{N} m(I_n) \right) - \epsilon$.''
+		\end{quote}
+	}{
+		For each $I_n = (a_n,b_n)$, let $J_n = [a_n + \frac{\epsilon}{2^{n+1}}, b_n - \frac{\epsilon}{2^{n+1}}]$ or $\varnothing$ if $|a_n - b_n| \leqslant \frac{\epsilon}{2^n}$. 
+	
+		Then \longeq{
+			\eqstep{\sum\limits_{n=1}^{N} m(J_n)}{\sum\limits_{n=1}^{N} (b_n - \frac{\epsilon}{2^{n+1}}) - (a_n + \frac{\epsilon}{2^{n+1}})}
+			\eqstep{}{\sum\limits_{n=1}^{N} (m(I_n) - \frac{\epsilon}{2^n})}
+			\eqstep{}{\left(\sum\limits_{n=1}^{N} m(I_n)\right) - \epsilon(1 - \frac{1}{2^N})}
+			\gtstep{}{\left(\sum\limits_{n=1}^{N} m(I_n)\right) - \epsilon}
+		}
+	}
+}
+
+\pagebreak
+
+\problem{49}{ 
+	Continued:
+}{
+	\subproof{(b)}{
+		Show how $m(U_1 \cup U_2) + m(U_1 \cap U_2) \geqslant \lambda^*(E_1 \cup E_2) + \lambda^*(E_1 \cap E_2)$ follows from the definition of $\lambda^*$.
+	}{
+		$m(U_1 \cup U_2) \geqslant \lambda^*(E_1 \cup E_2)$ follows trivially from the definition of $\lambda^*$ since the union of open sets is itself open and $(E_1 \cup E_2) \subset (U_1 \cup U_2)$.
+		
+		$m(U_1 \cap U_2) \geqslant \lambda^*(E_1 \cap E_2)$ holds similarly since the finite intersection of open sets remains open. 
+	}
+}
+
+\proof{50}{
+	Every subset of a set with measure zero is measurable.
+}{
+	Let $E$ and $S$ be sets such that $m(E) = 0$ and $S \subset E$. 
+	
+	For all compact sets $K \subset S$, $K \subset E$ as well. Therefore, by definition, $0 \leqslant \lambda_*(S) \leqslant m(K) \leqslant \lambda_*(E) = 0$ and $\lambda_*(S) = 0$. 
+	
+	For all open sets $U \supset E$, $U \supset S$ as well. Therefore, by definition, $0 \leqslant \lambda^*(S) \leqslant \inf\{U\} = \lambda^*(E) = 0$ and $\lambda^*(S) = 0$.
+	
+	Thus $S$ is a measurable set.
+}
+
+\proof{51}{
+	If $P$ denote the Cantor set in $[0,1]$ then $\lambda^*(P) = 0$
+}{
+	Let $P_n = \bigcap\limits_{m=1}^{n}\bigcap\limits_{k=0}^{3^{m-1}-1} \left(\left[0,\frac{3k+1}{3^m}\right] \cup \left[\frac{3k+2}{3^m},1\right]\right)$,
+	and let $P = \lim\limits_{n \to \infty} P_n$. This implies that $P_n = \bigcup\limits_{i=1}^{N}E_i$ where $E_i = [a_i,b_i]$ are closed and pairwise disjoint intervals. Therefore $m(P_n) = \sum\limits_{i=1}^{N}m(E_i) = \sum\limits_{i=1}^{N}(b_i - a_i)$.
+	
+	Let $\epsilon > 0$ be given and $U_i = (a_i + \frac{\epsilon}{2^{i+1}}, b_i - \frac{\epsilon}{2^{i+1}})$, then
+	
+	$m\left(\bigcup\limits_{i=1}^{N}U_i\right) \leqslant \sum\limits_{i=1}^{N}m(U_i) = \sum\limits_{i=1}^{N}(b_i - a_i) + \epsilon(1 - \frac{1}{2^n}) < m(P_n) + \epsilon$
+	
+	As $\epsilon$ is arbitrary, $\lambda^*(P_n) \leqslant m\left(\bigcup\limits_{i=1}^{N}U_i\right) \leqslant m(P_n)$. Additionally, since this holds true for all $n \in \bb{N}$, $\lim\limits_{n \to \infty}\lambda^*(P_n) \leqslant \lim\limits_{n \to \infty}m(P_n) = 0$
+}
+
+\proof{52}{
+	If $E \subset \bb{R}$ then there exists a sequence $\{U_n\}$ of open sets with $E \subset U_n$ for all $n \in \bb{N}$ such that $\lambda^*(E) = \lambda^*(\cap_n U_n)$
+}{
+	Let $E \subset \bb{R}$ and $U \supset E$ be an open set such that $\lambda^*(E) < m(U)$. Then by definition of outer measure there exists an open set $U_1 \subset U$ and $U_1 \supset E$ such that $\lambda^*(E) < m(U_1) < m(U)$.
+	
+	Let $\{U_n\}$ be a sequence of open sets such that $E \subset U_n \subset U_{n-1}$ and $\lambda^*(E) < m(U_n) < m(U_{n-1})$ for all $n \in \bb{N}$. Given that $\cap_n U_n = \lim\limits_{n \to \infty}U_n$, $\lambda^*(E) \leqslant m(\cap_n U_n) \leqslant \lim\limits_{n \to \infty}m(U_n)$. However, $\lambda^*(\cap_n U_n) = m(\cap_n U_n)$ and $\lim\limits_{n \to \infty} m(U_n) = \lambda^*(E)$. Therefore $\lambda^*(\cap_n U_n) = \lambda^*(E)$.
+}
+
+\proof{53}{
+	If $E_1 \subset E_2 \subset \bb{R}$ then $\lambda^*(E_1) \leqslant \lambda^*(E_2)$ and $\lambda_*(E_1) \leqslant \lambda_*(E_2)$.
+}{
+	Let $E_1,E_2 \subset \bb{R}$ such that $E_1 \subset E_2$
+	
+	\item[(a)] $\lambda^*(E_1) \leqslant \lambda^*(E_2)$:
+	
+	Let $\{U_n\}$, $\{W_n\}$ be sequences of open sets as defined in Problem 52 such that $U_n \subset W_n$, $E_1 \subset U_n$, and $E_2 \subset W_n$ for all $n \in \bb{N}$. Using the result from Problem 52, $\lambda^*(\cap_n U_n) = \lambda^*(E_1)$ and $\lambda^*(\cap_n W_n) = \lambda^*(E_2)$. Also $(\cap_n U_n) \subset (\cap_n W_n)$, so $\lambda^*(\cap_n U_n) \leqslant \lambda^*(\cap_n W_n)$ and $\lambda^*(E_1) \leqslant \lambda^*(E_2)$.
+	
+	\item[(b)] $\lambda_*(E_1) \leqslant \lambda_*(E_2)$:
+	
+	Let $\{S_n\}$, $\{K_n\}$ be sequences of compact sets such that $S_n \subset K_n$, $S_n \subset S_{n+1} \subset E_1$, and $K_n \subset K_{n+1} \subset E_2$ for all $n \in \bb{N}$. By a similar argument as Problem 52, $m(\cup_n S_n) = \lambda_*(E_1)$ and $m(\cup_n K_n) = \lambda_*(E_2)$. Since $\cup_n S_n \subset \cup_n K_n$, $m(\cup_n S_n) = m(\cup_n K_n) - m(\cup_n S_n \backslash \cup_n K_n)$, we have that $m(\cup_n S_n) \leqslant m(\cup_n K_n)$ and $\lambda_*(E_1) \leqslant \lambda_*(E_2)$.
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
