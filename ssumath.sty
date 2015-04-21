@@ -55,11 +55,21 @@
 	\end{flushright}
 }
 
+\newcommand{\subsoln}[3]{
+	\item[\bf{#1}] #2
+	\item[\bf{Solution:}] 
+	#3 
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}
+}
+
+
 %Macro for writing piecewise functions, provides '#1 = {#2'
 \newcommand{\piecewise}[2]{
 	\begin{displaymath}
 	#1 = \left\{
-	\begin{array}{lcr}
+	\begin{array}{lcl}
 	#2
 	\end{array}\right.
 	\end{displaymath}
@@ -84,6 +94,11 @@
 %single line for each equation step, of the form 'x = y' or '  = y'
 \newcommand{\eqstep}[2]{
 	#1 = & #2 \\
+}
+
+%single line for each equation step, of the form 'x ~ y' or '  ~ y'
+\newcommand{\seqstep}[2]{
+	#1 \sim & #2 \\
 }
 
 %single line for each equation step, of the form 'x > y' or '  > y'
