@@ -1,0 +1,17 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+
+\theorem{10.7.5}{
+	If $\{f_n\}$ is a sequence of measurable, non-negative functions on a measurable set $A$, and $\lim\limits_{n \to \infty}f_n(x) = f(x)$ almost everywhere, then
+	
+	\[\int\limits_{A}f d \lambda \leqslant \liminf\limits_{n \to \infty} \int\limits_{A} f_n d \lambda\]
+}{
+	Let $A_1 \cup A_2$ be a partition of $A$ where $A_1, A_2$ are disjoint, measurable sets such that $A_1  = \{x : \lim\limits_{n \to \infty} f_n(x) \to f(x),\ x \in A\}$ and $\lambda(A_2) = 0$. By Theorem 10.7.4, $\int_{A} f_n d \lambda = \int_{A_1} f_n d \lambda + \int_{A_2} f_n d \lambda = \int_{A_1} f_n d \lambda + 0$, and similarly for $f$.
+	
+	For all $k \in \bb{N}$, let $\psi_k(x) = \inf\{f_n(x) : n > k\}$, then $\psi_k(x) \leqslant \psi_{k+1}(x)$ and, because $\lim\limits_{n \to \infty}f_n(x) = f(x)$ for all $x \in A_1$, $\lim\limits_{k \to \infty} \psi_k(x) = f(x)$ for all $x \in A_1$. Thus $\int_{A_1} \psi_k d \lambda \leqslant \int_{A_1} f_n d \lambda$ for all $n > k$, and therefore $\int_{A_1} \psi_k d \lambda \leqslant \inf\int_{A_1} f_n d \lambda$ for all $n > k$. As $f(x) = \lim\limits_{k \to \infty}\psi_k(x)$ on $A_1$, $\int_{A_1} f d \lambda = \lim\limits_{k \to \infty} \int_{A_1} \psi_k d \lambda \leqslant \liminf\limits_{n \to \infty} \int_{A_1} f_n d \lambda$. Hence $\int_{A} f d \lambda \leqslant \liminf\limits_{n \to \infty} \int_{A} f_n d \lambda$
+}
+
+\end{document}

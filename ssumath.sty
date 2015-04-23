@@ -37,6 +37,18 @@
 	\end{enumerate}
 }
 
+%Shorthand for defining Theorem{#}{hypothesis}proof:{text}blacksquare
+\newcommand{\theorem}[3]{
+	\begin{enumerate}
+		\item[\bf{Theorem #1}] #2
+		\item[\textbf{Proof:}]
+		#3
+		\begin{flushright}
+			$\blacksquare$
+		\end{flushright}
+	\end{enumerate}
+}
+
 %Shorthand for defining problem{#}{descrition}{solution}
 \newcommand{\problem}[3]{
 	\begin{enumerate}
