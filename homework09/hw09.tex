@@ -1,0 +1,87 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Homework 9}{Amandeep Gill}
+
+\proof{54}{
+	Let $A$ be a measurable subset of $\bb{R}$ and $f : A \to \bb{R}$ be measurable. For each $n \in \bb{N}$, the function $f_n$ is measurable where
+	
+	\piecewise{f_n(x)}{
+		\pwcond{f(x)}{\abs{f(x)} \leqslant n}
+		\pwcond{n}{\abs{f(x)} > n}
+	}
+}{
+	Let $n \in \bb{N}$, $s \in \bb{R}$, and $E = \{x : f_n(x) > s,\ \forall x \in A\}$. 
+	
+	\begin{enumerate}
+		\case{$s < -n$}:\\
+			Then $E = A$ since $f_n(x) > s$ for all $x \in A$. So $E$ is measurable.
+		
+		\case{$-n \leqslant s \leqslant n$}:\\
+			If $f_n(x) > s$ then $f(x) > s$, hence $E = \{x : f(x) > s,\ \forall x \in A\}$ and is measurable by Theorem 10.5.3 for $f(x)$.
+			
+		\case{$s > n$}:\\
+			$f_n(x) \leqslant n$ for all $x \in A$, therefore $E = \emptyset$ and is measurable.
+	\end{enumerate}
+	
+	Thus $f_n(x)$ is measurable by Definition 10.5.1.
+}
+
+\proof{55}{
+	Let $f$ be a non-negative, bounded, measurable function on $[a,b]$. If $E$ and $F$ are measurable subsets of $[a,b]$ with $E \subset F$, then $\int\limits_{E} f d\lambda \leqslant \int\limits_{F} f d\lambda$.
+}{
+	Let $G = F \backslash E$, and let $\partn_E = \{E_1, E_2, \ldots, E_n\}$, $\partn_{G} = \{G_1, G_2, \ldots, G_m\}$ be partitions of $E$ and $G$. Thus $\partn_F = \partn_E \cup \partn_{G}$ is a partition of $F$, and by Definition 10.6.1
+	\longeq{
+		\eqstep{\mathcal{L}_L(\partn_F, f)}{m_1 \lambda(E_1) + \cdots m_n \lambda(E_n) + m_1 \lambda(G_1) + \cdots m_m \lambda(G_m)}
+		\eqstep{}{\sum\limits_{k=1}^{n}m_k \lambda(E_k) + \sum\limits_{i=1}^{m}m_i \lambda(G_i)}
+		\eqstep{}{\mathcal{L}_L(\partn_E, f) + \mathcal{L}_L(\partn_{G}, f)}
+	}
+	Because $f$ is bounded and non-negative, $\mathcal{L}_L(\partn_E, f)$ and $\mathcal{L}_L(\partn_{G}, f)$ are likewise both bounded and non-negative, $\mathcal{L}_L(\partn_E, f) \leqslant \mathcal{L}_L(\partn_{F}, f)$. Since any partition of $F$ can be refined into partitions as shown above, this holds true for all arbitrary partitions of $F$. From Lemma 10.6.5 $\sup\limits_{\partn_E} \mathcal{L}_L (\partn_E, f) \leqslant \sup\limits_{\partn_F} \mathcal{L}_L (\partn_F, f)$, so $\int\limits_{E} f d\lambda \leqslant \int\limits_{F} f d\lambda$ by Definition 10.6.3.
+}
+
+\proof{56}{
+	Let $f$ be a bounded, measurable function on $[a,b]$. For each $c > 0$, $\lambda\left(\{x \in [a,b] : \abs{f(x)} > c\}\right) \leqslant \frac{1}{c} \int\limits_{[a,b]} \abs{f} d\lambda$
+}{
+	Let $E = \{x \in [a,b] : \abs{f(x)} > c\}$ and $G = \{x \in [a,b] : \abs{f(x)} \leqslant c\}$. Then $E,G$ are measurable sets by Theorem 10.5.3 where $E \cup G = [a,b]$ and $E \cap G = \emptyset$, so $\partn = \{E,G\}$ is a partition of $[a,b]$ such that $0 \leqslant \abs{f(x)}$ for all $x \in G$ and $c \leqslant \abs{f(x)}$ for all $x \in E$. Therefore, from Definition 10.6.1, $0 \lambda(G) + c \lambda(E) \leqslant \mathcal{L}_L(\partn, \abs{f}) \leqslant \sup\limits_{\mathcal{Q}}(\mathcal{Q}, \abs{f}) = \int\limits_{[a,b]} \abs{f} d\lambda$. Hence $\lambda(E) \leqslant \frac{1}{c} \int\limits_{[a,b]} \abs{f} d\lambda$
+}
+
+\problem{57}{
+	Let $f$ be a non-negative bounded measurable function on $[a,b]$.
+}{
+	\subproof{(a)}{
+		If $\int\limits_{[a,b]}f d\lambda = 0$ then $f = 0$ almost everywhere on $[a,b]$.
+	}{
+		Let $\epsilon > 0$ and $E = \{x \in [a,b] : f(x) > \epsilon\}$. Then $\lambda(E) \leqslant \frac{1}{\epsilon} \int\limits_{[a,b]} \abs{f} d\lambda$, by Problem 56. By assumption, $\int\limits_{[a,b]} \abs{f} d\lambda = 0$, so $\lambda(E) \leqslant \frac{1}{\epsilon} \cdot 0 = 0$
+	}
+	
+	\subproof{(b)}{
+		If $A \subset [a,b]$ is measurable and $\int\limits_{A}f d\lambda = 0$ then $f = 0$ almost everywhere on $A$.
+	}{
+		Let $\chi_A : [a,b] \to \bb{R}$ be defined as
+		\piecewise{\chi_A(x)}{
+			\pwcond{1}{x \in A}
+			\pwcond{0}{x \not\in A}
+		}
+		Then by Definition 10.6.3, $\int\limits_{A}f d\lambda = \int\limits_{[a,b]}f\chi_A d\lambda$. Because $f\chi_A$ is a bounded non-negative measurable function defined on $[a,b]$, (a) gives $f\chi_A = 0$ almost everywhere on $[a,b]$, and as $f\chi_A$ can only be nonzero, and is equal to $f$, on $A$ this implies that $f = 0$ a.e. on $A$.
+	}
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
