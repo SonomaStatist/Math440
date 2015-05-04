@@ -104,38 +104,70 @@
 %eg: x = y, x = yz + w, x = ...
 \newcommand{\longeq}[1]{
 	\begin{displaymath}
-	\begin{array}{rl}
+	\begin{array}{rlr}
 	#1
 	\end{array}
 	\end{displaymath}
 }
 
+%% The following are steps without justification %%
 %single line for each equation step, of the form 'x = y' or '  = y'
 \newcommand{\eqstep}[2]{
-	#1 = & #2 \\
+	#1 = & #2 & \\
 }
 
 %single line for each equation step, of the form 'x ~ y' or '  ~ y'
 \newcommand{\seqstep}[2]{
-	#1 \sim & #2 \\
+	#1 \sim & #2 & \\
 }
 
 %single line for each equation step, of the form 'x > y' or '  > y'
 \newcommand{\gtstep}[2]{
-	#1 > & #2 \\
+	#1 > & #2 & \\
 }
 
 %single line for each equation step, of the form 'x >= y' or '  >= y'
 \newcommand{\geqstep}[2]{
-	#1 \geqslant & #2 \\
+	#1 \geqslant & #2 & \\
 }
 
 %single line for each equation step, of the form 'x < y' or '  < y'
 \newcommand{\ltstep}[2]{
-	#1 < & #2 \\
+	#1 < & #2 & \\
 }
 
 %single line for each equation step, of the form 'x <= y' or '  <= y'
 \newcommand{\leqstep}[2]{
-	#1 \leqslant & #2 \\
+	#1 \leqslant & #2 & \\
+}
+
+%% The following are steps with justification %%
+%single line for each equation step, of the form 'x = y' or '  = y'
+\newcommand{\eqsteptx}[3]{
+	#1 = & #2 & \text{#3} \\
+}
+
+%single line for each equation step, of the form 'x ~ y' or '  ~ y'
+\newcommand{\seqsteptx}[3]{
+	#1 \sim & #2 & \text{#3} \\
+}
+
+%single line for each equation step, of the form 'x > y' or '  > y'
+\newcommand{\gtsteptx}[3]{
+	#1 > & #2 & \text{#3} \\
+}
+
+%single line for each equation step, of the form 'x >= y' or '  >= y'
+\newcommand{\geqsteptx}[3]{
+	#1 \geqslant & #2 & \text{#3} \\
+}
+
+%single line for each equation step, of the form 'x < y' or '  < y'
+\newcommand{\ltsteptx}[3]{
+	#1 < & #2 &  \text{#3} \\
+}
+
+%single line for each equation step, of the form 'x <= y' or '  <= y'
+\newcommand{\leqsteptx}[3]{
+	#1 \leqslant & #2 & \text{#3} \\
 }
