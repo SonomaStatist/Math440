@@ -1,0 +1,64 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Homework 10}{Amandeep Gill}
+
+\soln{63}{
+	Let $a \in \bb{R}$ such that $0 < a < \frac{1}{2}$, and let $C_0 = [0,1]$ be the first step in the generalized Cantor set with $C_n$ comprised of $2^n$ disjoint intervals of length $a^n$ such that $C_n \subset C_{n-1}$, and define \[C_a = C_0 \cap C_1 \cap C_2 \cap \cdots\] Assuming the box-counting dimension of $C_a$ exists, find $\dim_B(C_a)$.
+}{
+	Let $n \in \bb{N}$ and $r_n = a^n$. The number of intervals of length $r_n$ needed to cover $C_a$, $N_{r_n}(C_a) = 2^n$. Then \longeq{
+		\eqstep{\dim_B(C_a)}{\lim\limits_{r_n \to 0}\frac{\log N_{r_n}(C_a)}{-\log r_n}}
+		\eqstep{}{\lim\limits_{n \to \infty} \frac{\log 2^n}{-\log a^n}}
+		\eqstep{}{\lim\limits_{n \to \infty} \frac{n \log 2}{n \log \frac{1}{a}}}
+		\eqstep{}{\frac{\log 2}{\log \frac{1}{a}}}
+	}
+}
+
+\proof{64}{
+	The box-counting dimension of any finite subset of $\bb{R}$ is zero.
+}{
+	Let $E = \{x_1, x_2, \ldots, x_n\}$ be a subset of $\bb{R}$. For all $r \in \bb{R}$ such that $r > 0$, $1 \leqslant N_r(E) \leqslant n$. Hence $\frac{\log 1}{-\log r} \leqslant \frac{\log N_r(E)}{-\log r} \leqslant \frac{\log n}{-\log r}$.	Since $\frac{\log 1}{-\log r} = 0$ and $\lim\limits_{r \to 0}\frac{\log n}{-\log r} = 0$, $0  \leqslant \lim\limits_{r \to 0}\frac{\log N_r(E)}{-\log r} \leqslant 0$. Thus $\dim_B(E) = 0$ for all finite subsets $E$ of $\bb{R}$.
+}
+
+\proof{65}{
+	If $E \subset F \subset \bb{R}^n$ and the box-counting dimensions exist for $E$ and $F$, then $\dim_B(E) \leqslant \dim_B(F)$.
+}{
+	Let $E, E^c$ be disjoint subsets of $\bb{R}^n$ such that $E \cup E^c = F \subset \bb{R}^n$, and let $n = N_r(E)$ with $C_r$ the accompanying box cover of $E$. If $E^c \subset C_r$, then $F \subset C_r$ and $N_r(F) = N_r(E)$. Otherwise additional $r$-cubes must be unioned to $C_r$ in order to cover $E^c$, and so $N_r(F) > N_r(E)$. Since $r$ is arbitrary, $N_r(E) \leqslant N_r(F)$ and $\frac{\log N_r(E)}{-\log r} \leqslant \frac{\log N_r(F)}{-\log r}$ for all $r \in \bb{R}^+$. Therefore, because the box-counting dimensions for $E$ and $F$ exist by assumption, $\dim_B(E) \leqslant \dim_B(F)$.
+}
+
+\pagebreak
+
+\soln{66}{
+	Find an upper bound on the Hausdorff dimension of the Menger sponge.
+}{
+	Let $M$ be the set defined in the construction of the Menger sponge and $M_n$ be defined as a ball in $\bb{R}^3$ such that $\abs{M_n} = \frac{\sqrt{3}}{3^n}$ for each $n \geqslant 0$. Then the number of $M_n$ balls needed to cover $M$ is $N = 20^n$. By Definition D.2.4, $\mathcal{H}_\delta^s(M) = \inf\left\{\sum\limits_{i \geqslant 1}\abs{U_i}^s : \{U_i\}_{i \geqslant 1} \text{ is a } \delta \text{-cover of } M\right\}$. Therefore $\mathcal{H}_\delta^s(M) \leqslant \sum\limits_{i = 1}^{N} \abs{M_n}^s = \sum\limits_{i = 1}^{20^n} \left(\frac{\sqrt{3}}{3^n}\right)^s = \frac{20^n}{3^{sn}}\sqrt{3}^s$ for all $\delta$-covers of $M$, and thus $\mathcal{H}^s(M) = \lim\limits_{\delta \to 0^+}\mathcal{H}_\delta^s(M) \leqslant \lim\limits_{n \to \infty} \frac{20^n}{3^{sn}}\sqrt{3}^s$. Thus $s = \frac{\log 20}{\log 3}$ is an upper bound on $\dim_H(M)$.
+}
+
+\proof{67}{
+	For each $s > 0$, $\mathcal{H}^s$ is an outer measure on $\bb{R}^n$.
+}{
+	Let $\mathcal{H}^s : 2^{\bb{R}^n} \to [0,\infty]$ be defined as $\mathcal{H}^s(E) = \lim\limits_{\delta \to 0^+} \mathcal{H}_\delta^s(E)$. By Ex4 on page 113 this limit is well defined for all subsets $E$ in $\bb{R}^n$, and given that $\mathcal{H}_\delta^s$ is an outer measure on $\bb{R}^n$ by part(a) of Theorem D.2.5, 
+	\begin{enumerate}
+		\item[(i)] $\mathcal{H}^s(\emptyset) = \lim\limits_{\delta \to 0^+} \mathcal{H}_\delta^s(\emptyset) = \lim\limits_{\delta \to 0^+} 0 = 0$, since $\mathcal{H}_\delta^s(\emptyset) = 0$ for all $\delta$-covers.
+		
+		\item[(ii)] Let $A \subset B \subset \bb{R}^n$, then for all $\delta$-covers, $\mathcal{H}_\delta^s(A) \leqslant \mathcal{H}_\delta^s(B)$. Thus $\lim\limits_{\delta \to 0^+} \mathcal{H}_\delta^s(A) \leqslant \lim\limits_{\delta \to 0^+} \mathcal{H}_\delta^s(B)$ and $\mathcal{H}^s(A) \leqslant \mathcal{H}^s(B)$.
+		
+		\item[(iii)] Let $\{A_i\}_{i \geqslant 1}$ be a countable collection of subsets of $\bb{R}^n$, and let $A = \bigcup\limits_{i \geqslant 1} A_i$. If $\sum\limits_{i \geqslant 1}\mathcal{H}^s(A_i) = \infty$, then $\mathcal{H}^s(A) \leqslant \sum\limits_{i \geqslant 1}\mathcal{H}^s(A_i)$ is true by definition. Assume then that $\sum\limits_{i \geqslant 1}\mathcal{H}^s(A_i) < \infty$. for each $A_i$, $\mathcal{H}_\delta^s(A_i) \leqslant \mathcal{H}^s(A_i)$ as $\mathcal{H}_\delta^s$ is a monotone decreasing function on $\delta$. Thus $\sum\limits_{i \geqslant 1}\mathcal{H}_\delta^s(A_i) \leqslant \sum\limits_{i \geqslant 1}\mathcal{H}^s(A_i)$, for all $\delta$-covers. Additionally, $\mathcal{H}_\delta^s(A) \leqslant \sum\limits_{i \geqslant 1}\mathcal{H}_\delta^s(A_i)$. Hence \[\mathcal{H}^s(A) = \lim\limits_{\delta \to ^+}\mathcal{H}_\delta^s(A) \leqslant \lim\limits_{\delta \to 0^+}\sum\limits_{i \geqslant 1}\mathcal{H}_\delta^s(A_i) \leqslant \lim\limits_{\delta \to 0^+}\sum\limits_{i \geqslant 1}\mathcal{H}^s(A_i)\]
+	\end{enumerate}
+	
+	Thus $\mathcal{H}^s$ satisfies all properties of Definition D.2.3 and is therefore an outer measure on $\bb{R}^n$.
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
