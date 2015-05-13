@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{../ssumath}
+
+\begin{document}
+	
+\mktitle{Math 440 -- Real Analysis II}{Final Exam}{Amandeep Gill}
+
+\problem{1}{
+	Determine which of the following series are divergent, conditionally convergent, or absolutely convergent.
+}{
+	\subproof{(a)}{
+		$\sum\limits_{k=1}^{\infty} \frac{(-1)^k k}{2k^2 - 1}$ converges conditionally.
+	}{
+		Let $b_k = \frac{k}{2k^2 - 1}$. Since $b_{k+1} = \frac{k + 1}{2(k+1)^2 - 1} = \frac{k + 1}{2k^2 + 4k + 1} < b_k$ for all $k \in \bb{K}$ and $\lim\limits_{k \to \infty}b_k = 0$, by the Alternating Series Test $\sum\limits_{k=1}^{\infty} \frac{(-1)^k k}{2k^2 - 1}$ converges conditionally.
+	}
+	
+	\subproof{(b)}{
+		$\sum\limits_{k=0}^{\infty} \frac{(-1)^{a_k}}{k^2 + 1}$ where $a_k = \lfloor\frac{k}{2}\rfloor$ converges absolutely.
+	}{
+		Let $b_k = \abs{\frac{(-1)^{a_k}}{k^2 + 1}} = \frac{1}{k^2 + 1}$. For all $k \in \bb{N}$, $b_k < \frac{1}{k^2}$, therefore since $\frac{1}{k^2}$ is a convergent P-series $\sum\limits_{k=1}^{\infty}b_k$ converges. Thus $\sum\limits_{k=0}^{\infty} \frac{(-1)^{a_k}}{k^2 + 1}$ converges absolutely.
+	}
+}
+
+\pagebreak
+
+\problem{2}{
+	Let $\cbrace{q_k}_{k\in\bb{N}}$ be an enumeration of the rational numbers on $[0,1]$, and for each $k \in \bb{N}$ define $C_k = \cbrace{q_1, q_2, \ldots, q_k}$. Let $f : [0,1] \to \bb{R}$ be defined by $f(x) = \sum\limits_{k=1}^{\infty} 2^{-k} \chi_{C_k}$.
+}{
+	\subproof{(a)}{
+		The series defining $f$ converges uniformly on $[0,1]$. 
+	}{
+		Let $f$ be defined piecewise as
+		
+		\piecewise{f(x)}{
+			\pwcond{0}{x \in [0,1] \backslash \bb{Q}}
+			\pwcond{2^{1-i}}{x = q_i \text{ for some } q_i \in \cbrace{q_k}_{k \in \bb{N}}}
+		}
+		
+		Let $\epsilon > 0$ be given, $f_n(x) = \sum\limits_{k=1}^{n} 2^{-k} \chi_{C_k}$, and let $m, \naught{n} \in \bb{N}$ such that $m > \naught{n}$ and $2^{-\naught{n}} < \epsilon$. If $x \in [0,1] \backslash \bb{Q}$, then $f_m(x)=0$ and $\abs{f_m(x) - f(x)} = 0 < \epsilon$. Otherwise, $x = q_i$ for some $i \in \bb{N}$. 
+		\begin{enumerate}
+		\case{$i > m$}:\\
+			$f_m(x) = 0$ and $\abs{f_m(x) - f(x)} = 2^{1-i} < 2^{-\naught{n}} < \epsilon$.
+		\case{$i \leqslant m$}:\\
+			$f_m(x) = 2^{1-i} - 2^{-m}$ and $\abs{f_m(x) - f(x)} = 2^{-m} < 2^{-\naught{n}} < \epsilon$.
+		\end{enumerate}
+		
+		Thus $f_n$ converges to $f$ uniformly on $[0,1]$.
+	}
+	
+	\subsoln{(b)}{
+		Calculate $f(q_1)$, $f(q_2)$, $f(q_3)$, and $f(\sqrt{2}/2)$
+	}{ $\ $
+		\begin{enumerate}
+		\item[$f(q_1)$] = $1$
+		\item[$f(q_2)$] = $\frac{1}{2}$
+		\item[$f(q_3)$] = $\frac{1}{4}$
+		\item[$f(\sqrt{2}/2)$] = $0$
+		\end{enumerate}
+	}
+	
+	\pagebreak
+	
+	\subproof{(c)}{
+		$f$ is Riemann integrable on $[0,1]$ and $\int\limits_{0}^{1}f dx = 0$
+	}{
+		For each $n \in \bb{N}$ let $\partn_n = \cbrace{x_0,x_1,\ldots,x_{2^n}}$ partition $[0,1]$ where $x_i = \frac{i}{2^n}$. For each $n$, $\mathcal{U}(\partn_n,f) \leqslant \sum\limits_{k=1}^{2^n} 2^{1-k} \frac{1}{2^{n}} = 2^{1-n} - 2^{1-n-2^n}$ as the sup of an interval in the partition must be $f(q_1)$ or less, which means that the sup of one of the remaining intervals must be $f(q_2)$ or less, and so on up to $f(q_{2^n})$ in the final interval. Thus by Lemma 6.1.3 \[\inf\mathcal{U}(\partn,f) \leqslant \lim\limits_{n\to\infty} \mathcal{U}(\partn_n,f) \leqslant \lim\limits_{n\to\infty}2^{1-n} - 2^{1-n-2^n} = 0\] $f$ is non-negative, so by Theorem 6.1.4, \[0 \leqslant \sup\mathcal{L}(\partn, f) \leqslant \inf\mathcal{U}(\partn,f) \leqslant 0\] Therefore $\int\limits_{0}^{1}fdx = 0$ by Defintion 6.1.5.
+	}
+	
+	\subproof{(c)}{
+		$f$ is Lebesgue integrable on $[0,1]$ and $\int\limits_{0}^{1}f d\lambda = 0$
+	}{
+		By Corollary 10.6.8 if the Riemann integral exists, then the Lebesgue integral exists and is equal to the Riemann integral. Thus $\int\limits_{0}^{1}f d\lambda = 0$.
+	}
+}
+
+\pagebreak
+
+\problem{3}{
+	Let $A$ be a measurable subset of $\bb{R}$, and let $\mathcal{L}(A)$ denote the set of all Lebesgue integrable functions on $A$. Given $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$, define $(f+g)(x) = f(x) + g(x)$ and $(cf)(x) = cf(x)$ for all $x \in \bb{R}$
+}{
+	\subproof{(a)}{
+		$\mathcal{L}(A)$ forms a vector space over $\bb{R}$.
+	}{
+		Let $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$, then $\int\limits_{A}(f + g) d\lambda = \int\limits_{A}f d\lambda + \int\limits_{A}f d\lambda$ by Theorem 10.7.8(a), as both $f$ and $g$ are Lebesgue integrable functions by assumption, so $(f+g)(x)$ is Lebesgue integrable and $\mathcal{L}(A)$ is closed under function addition. Similarly by Theorem 10.7.8(a), $\int\limits_{A}cf d\lambda = c \int\limits_{A}f d\lambda$, hence $(cf)(x)$ is Lebesgue integrable and $\mathcal{L}(A)$ is closed under scalar multiplication. Because the eight vector space axioms hold trivially, $\mathcal{L}(A)$ is a vector space over $\bb{R}$.
+	}
+	
+	\subproof{(c)}{
+		If $\norm{\cdot} : \mathcal{L}(A) \to \bb{R}$ is defined as $\norm{f} = \int\limits_{A} \abs{f} d\lambda$, then $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$
+	}{
+		Let $A = [0,1]$ and $f(x) = \chi_E$ where $E = [0,1] \backslash \bb{Q}$. Then $\norm{f} = \int\limits_{A} \abs{f} d\lambda = \int\limits_{A} \chi_E d\lambda$. By Theorem 10.6.10, $\int\limits_{A} \chi_E d\lambda = \int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda$. Let $x_n \in E$ such that $\bigcup\limits_{n \in \bb{N}} \cbrace{x_n} = E$, and let $\epsilon > 0$ be given. Then for each $I_n = (x_n - \frac{\epsilon}{2^{n+1}}, x_n + \frac{\epsilon}{2^{n+1}})$, $E \subset \bigcup\limits_{n\in\bb{N}}I_n$ and $\sum\limits_{n \in \bb{N}} \lambda(I_n) = \epsilon$. Thus, by Theorem 6.1.11, $\lambda(E) = 0$ and $\int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda = 1\lambda(E) + 0\lambda(E^c) = 0$. Since $f \not= 0$, $\norm{\cdot}$ does not satisfy the property that $\norm{f} = 0$ if and only if $f = 0$, and therefore $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$.
+	}
+}
+
+\pagebreak
+
+\problem{(4)}{
+	Let $a \in \bb{R}$ such that $0 < a < \frac{1}{2}$, and let $C_0 = [0,1]$ be the first step in the generalized Cantor set with $C_n$ comprised of $2^n$ disjoint intervals of length $a^n$ such that $C_n \subset C_{n-1}$, and define \[C_a = C_0 \cap C_1 \cap C_2 \cap \cdots\] 
+}{
+	\subproof{(a)}{
+		If $a \in \bb{R}$ with $0 < a < \frac{1}{2}$ then the set $C_a$ is measurable with measure 0.
+	}{
+		For each $n \in \bb{N}$, $C_n$ is the union of $2^n$ disjoint intervals of length $a^n$, so by Theorem 10.4.5(b) $\lambda(C_n) = 2^n a^n = (2a)^n$. Let $\cbrace{c_n}_{n \in \bb{N}}$ be a sequence of real numbers such that $c_n = \lambda(C_n) = (2a)^n$. Because the number of intervals is countable for all $n$, Theorem 10.4.5(b) holds for all $n$, and since $a < \frac{1}{2}$, $2a < 1$ and $c_n$ is a monotonically decreasing sequence bounded by $[0,1]$ and thus $\lim\limits_{n \to \infty} c_n = 0$. As $C_a \subset C_n$, for each open cover $U \supset C_n$ so $C_a \subset U$ and so $\lambda^*(C_a) \leqslant \lambda^*(C_n)$ by Definition 10.3.1. By Theorem 10.3.4(a) $\lambda(C_n) = \lambda^*(C_n)$, hence $\lambda^*(C_a) \leqslant c_n$ for all $n$. Therefore $0 \leqslant \lambda_*(C_a) \leqslant \lambda^*(C_a) \leqslant \lim\limits_{n \to \infty} c_n = 0$, and by Definition 10.3.4(a) $C_a$ is measurable with $\lambda(C_a) = 0$. 
+	}
+	
+	\subproof{(b)}{
+		$\frac{\log 2}{\log(1/a)}$ is an upper bound on the Hausdorff dimension of $C_a$.
+	}{
+		Let $A_n$ be defined as a ball in $\bb{R}$ such that $\abs{A_n} = a^n$ is a $\delta_n$ cover for each $n \in \bb{N}$. The number of $A_n$ balls needed to cover $C_a$ is then $N = 2^n$. By Definition D.2.4, $\mathcal{H}_{\delta_n}^s(C_a) \leqslant \sum\limits_{k = 1}^{N} \abs{A_n}^s = 2^n a^{sn}$. Therefore, as $\mathcal{H}^s(C_a) = \lim\limits_{\delta \to 0^+} \mathcal{H}_\delta^s(C_a) \leqslant \lim\limits_{n \to \infty} 2^n a^{sn}$. Thus $s = \frac{\log 2}{\log(1/a)}$ is an upper bound on $\dim_H(C_a)$.
+	}
+}
+
+\pagebreak
+
+\proof{5}{
+	The Hausdorff dimension of any countable subset of $\bb{R}^d$ is zero.
+}{
+	Let $\epsilon > 0$ be given, and let $X = \cbrace{x_1, x_2, \ldots, x_k}$ for some $k \in \bb{N}$ be a subset of $\bb{R}^d$ with a $\delta_\epsilon$-cover defined as $\bigcup\limits_{n = 1}^{k}C_n$ where $x_n \in C_n$ and $\abs{C_n} = \frac{\epsilon}{2^n}$. By Definition D.2.4, $\mathcal{H}_{\delta_\epsilon}^s \leqslant \sum\limits_{n=1}^{k} (\frac{\epsilon}{2^n})^s = \left(\epsilon - \frac{\epsilon}{2^k}\right)^s$. Thus $\lim\limits_{\delta_\epsilon \to 0^+} \mathcal{H}_{\delta_\epsilon}^s \leqslant 0^s = 0$ for all $s > 0$ and therefore as $k$ is arbitrary, $\dim_H(X) = 0$ for all $k \in \bb{N}$.
+} 
+
+\proof{6}{
+	Let $\cbrace{E_k}_{k \in \bb{N}}$ be a sequence of subsets of $\bb{R}$. If there exists a sequence $\cbrace{U_k}_{k \in \bb{N}}$ of pairwise disjoint open sets such that $E_k \subset U_k$ for all $k \in \bb{N}$, then \[\lambda^*\left(\bigcup\limits_{k = 1}^{\infty}E_k\right) = \sum\limits_{k = 1}^{\infty}\lambda^*(E_k)\]
+}{
+	Let $\cbrace{U_k}_{k \in \bb{N}}$ be a sequence of disjoint open sets such that $E_k \subset U_k$ for all $k$, and let $U$ be the union of all $U_k$ and $E$ be the union of all $E_K$. By Theorem 10.4.4(a), $\lambda^*(E) \leqslant \sum\limits_{k=1}^{\infty} \lambda^*(E_k)$. For each $k$, $E_k \subset U_k$ and $E \subset U$, so by Definition 10.3.1 $\lambda^*(E_k) \leqslant \lambda(U_k) = \lambda^*(U_k)$ and $\lambda^*(E) \leqslant \lambda(U) = \lambda^*(U)$. Hence $\sum\limits_{k=1}^{\infty}\lambda^*(E_k) \leqslant \sum\limits_{k=1}^{\infty}\lambda(U_k) = \lambda(U)$ by Theorem 10.4.5(b) and Definition 10.3.4(a).
+}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

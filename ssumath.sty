@@ -25,6 +25,9 @@
 %Shorthand for left and right angle brackets
 \newcommand{\abrace}[1]{\left\langle #1 \right\rangle}
 
+%Shortcut for left and right curly braces
+\newcommand{\cbrace}[1]{\left\{ #1 \right\}}
+
 %Absolute value symbol
 \newcommand{\abs}[1]{\left| #1 \right|}
 
@@ -47,11 +50,7 @@
 \newcommand{\soln}[3]{
 	\begin{enumerate}
 		\item[\bf{Problem #1}] #2
-		\item[\textbf{Solution:}]
-		#3
-		\begin{flushright}
-			$\blacksquare$
-		\end{flushright}
+		\item[\textbf{Solution:}] #3
 	\end{enumerate}
 }
 
@@ -88,11 +87,7 @@
 
 \newcommand{\subsoln}[3]{
 	\item[\bf{#1}] #2
-	\item[\bf{Solution:}] 
-	#3 
-	\begin{flushright}
-		$\blacksquare$
-	\end{flushright}
+	\item[\bf{Solution:}] #3
 }
 
 
