@@ -22,8 +22,6 @@
 	}
 }
 
-%\pagebreak
-
 \problem{2}{
 	Let $\cbrace{q_k}_{k\in\bb{N}}$ be an enumeration of the rational numbers on $[0,1]$, and for each $k \in \bb{N}$ define $C_k = \cbrace{q_1, q_2, \ldots, q_k}$. Let $f : [0,1] \to \bb{R}$ be defined by $f(x) = \sum\limits_{k=1}^{\infty} 2^{-k} \chi_{C_k}$.
 }{
@@ -39,9 +37,9 @@
 		
 		Let $\epsilon > 0$ be given, $f_n(x) = \sum\limits_{k=1}^{n} 2^{-k} \chi_{C_k}$, and let $m, \naught{n} \in \bb{N}$ such that $m > \naught{n}$ and $2^{-\naught{n}} < \epsilon$. If $x \in [0,1] \backslash \bb{Q}$, then $f_m(x)=0$ and $\abs{f_m(x) - f(x)} = 0 < \epsilon$. Otherwise, $x = q_i$ for some $i \in \bb{N}$. 
 		\begin{enumerate}
-		\case{$i > m$}:\\
+		\case{$i > m$}
 			$f_m(x) = 0$ and $\abs{f_m(x) - f(x)} = 2^{1-i} < 2^{-\naught{n}} < \epsilon$.
-		\case{$i \leqslant m$}:\\
+		\case{$i \leqslant m$}
 			$f_m(x) = 2^{1-i} - 2^{-m}$ and $\abs{f_m(x) - f(x)} = 2^{-m} < 2^{-\naught{n}} < \epsilon$.
 		\end{enumerate}
 		
@@ -59,22 +57,18 @@
 		\end{enumerate}
 	}
 	
-	%\pagebreak
-	
 	\subproof{(c)}{
-		$f$ is Riemann integrable on $[0,1]$ and $\int\limits_{0}^{1}f dx = 0$
+		$f$ is Riemann integrable on $[0,1]$
 	}{
-		For each $n \in \bb{N}$ let $\partn_n = \cbrace{x_0,x_1,\ldots,x_{2^n}}$ partition $[0,1]$ where $x_i = \frac{i}{2^n}$. For each $n$, $\mathcal{U}(\partn_n,f) \leqslant \sum\limits_{k=1}^{2^n} 2^{1-k} \frac{1}{2^{n}} = 2^{1-n} - 2^{1-n-2^n}$ as the sup of an interval in the partition must be $f(q_1)$ or less, which means that the sup of one of the remaining intervals must be $f(q_2)$ or less, and so on up to $f(q_{2^n})$ in the final interval. Thus by Lemma 6.1.3 \[\inf\mathcal{U}(\partn,f) \leqslant \lim\limits_{n\to\infty} \mathcal{U}(\partn_n,f) \leqslant \lim\limits_{n\to\infty}2^{1-n} - 2^{1-n-2^n} = 0\] $f$ is non-negative, so by Theorem 6.1.4, \[0 \leqslant \sup\mathcal{L}(\partn, f) \leqslant \inf\mathcal{U}(\partn,f) \leqslant 0\] Therefore $\int\limits_{0}^{1}fdx = 0$ by Defintion 6.1.5.
+		For each $n \in \bb{N}$ let $\partn_n = \cbrace{x_0,x_1,\ldots,x_{2^n}}$ partition $[0,1]$ where $x_i = \frac{i}{2^n}$. For each $n$, $\mathcal{U}(\partn_n,f) \leqslant \sum\limits_{k=1}^{2^n} 2^{1-k} \frac{1}{2^{n}} = 2^{1-n} - 2^{1-n-2^n}$ as the sup of an interval in the partition must be $f(q_1)$ or less, which means that the sup of one of the remaining intervals must be $f(q_2)$ or less, and so on up to $f(q_{2^n})$ in the final interval. Thus by Lemma 6.1.3 \[\inf\limits_{\mathcal{P}}\mathcal{U}(\partn,f) \leqslant \lim\limits_{n\to\infty} \mathcal{U}(\partn_n,f) \leqslant \lim\limits_{n\to\infty}2^{1-n} - 2^{1-n-2^n} = 0\] $f$ is non-negative, so by Theorem 6.1.4, \[0 \leqslant \sup\limits_{\mathcal{Q}}\mathcal{L}(\mathcal{Q}, f) \leqslant \inf\limits_{\mathcal{P}}\mathcal{U}(\partn,f) \leqslant 0\] Therefore $\int\limits_{0}^{1}fdx = 0$ by Definition 6.1.5.
 	}
 	
 	\subproof{(c)}{
-		$f$ is Lebesgue integrable on $[0,1]$ and $\int\limits_{0}^{1}f d\lambda = 0$
+		$f$ is Lebesgue integrable on $[0,1]$
 	}{
-		By Corollary 10.6.8 if the Riemann integral exists, then the Lebesgue integral exists and is equal to the Riemann integral. Thus $\int\limits_{0}^{1}f d\lambda = 0$.
+		$\int\limits_0^1 fdx = 0$, so $\int\limits_{0}^{1}f d\lambda = 0$ by Corollary 10.6.8.
 	}
 }
-
-%\pagebreak
 
 \problem{3}{
 	Let $A$ be a measurable subset of $\bb{R}$, and let $\mathcal{L}(A)$ denote the set of all Lebesgue integrable functions on $A$. Given $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$, define $(f+g)(x) = f(x) + g(x)$ and $(cf)(x) = cf(x)$ for all $x \in \bb{R}$
@@ -82,17 +76,15 @@
 	\subproof{(a)}{
 		$\mathcal{L}(A)$ forms a vector space over $\bb{R}$.
 	}{
-		Let $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$, then $\int\limits_{A}(f + g) d\lambda = \int\limits_{A}f d\lambda + \int\limits_{A}f d\lambda$ by Theorem 10.7.8(a), as both $f$ and $g$ are Lebesgue integrable functions by assumption, so $(f+g)(x)$ is Lebesgue integrable and $\mathcal{L}(A)$ is closed under function addition. Similarly by Theorem 10.7.8(a), $\int\limits_{A}cf d\lambda = c \int\limits_{A}f d\lambda$, hence $(cf)(x)$ is Lebesgue integrable and $\mathcal{L}(A)$ is closed under scalar multiplication. Because the eight vector space axioms hold trivially, $\mathcal{L}(A)$ is a vector space over $\bb{R}$.
+		Let $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$. By assumption  $\int\limits_{A}\abs{f}d\lambda$, $\int\limits_{A}\abs{g}d\lambda < \infty$, so from the Triangle Inequality, \[\abs{(f + g)(x)} = \abs{f(x) + g(x)} \leqslant \abs{f(x)} + \abs{g(x)}\] Thus $\int\limits_{A}\abs{(f + g)} d\lambda \leqslant \int\limits_{A}\abs{f} + \abs{g} d\lambda = \int\limits_{A}\abs{f} d\lambda + \int\limits_{A}\abs{g} d\lambda$ by Theorem 10.7.8(a). Therefore $\int\limits_{A}\abs{(f+g)d\lambda < \infty}$ and $(f+g) \in \mathcal{L}(A)$. Similarly, $\abs{cf(x)} = \abs{c}\cdot\abs{f(x)}$ and by Theorem 10.7.8(a), \[\int\limits_{A}\abs{cf} d\lambda = \abs{c} \cdot \int\limits_{A}\abs{f} d\lambda < \infty\] Hence $(cf)(x) \in \mathcal{L}(A)$. Because the eight vector space axioms hold trivially, $\mathcal{L}(A)$ is a vector space over $\bb{R}$.
 	}
 	
 	\subproof{(c)}{
-		If $\norm{\cdot} : \mathcal{L}(A) \to \bb{R}$ is defined as $\norm{f} = \int\limits_{A} \abs{f} d\lambda$, then $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$
+		Let $\norm{\cdot} : \mathcal{L}(A) \to \bb{R}$ be $\norm{f} = \int\limits_{A} \abs{f} d\lambda$. $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$
 	}{
-		Let $A = [0,1]$ and $f(x) = \chi_E$ where $E = [0,1] \backslash \bb{Q}$. Then $\norm{f} = \int\limits_{A} \abs{f} d\lambda = \int\limits_{A} \chi_E d\lambda$. By Theorem 10.6.10, $\int\limits_{A} \chi_E d\lambda = \int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda$. Let $x_n \in E$ such that $\bigcup\limits_{n \in \bb{N}} \cbrace{x_n} = E$, and let $\epsilon > 0$ be given. Then for each $I_n = (x_n - \frac{\epsilon}{2^{n+1}}, x_n + \frac{\epsilon}{2^{n+1}})$, $E \subset \bigcup\limits_{n\in\bb{N}}I_n$ and $\sum\limits_{n \in \bb{N}} \lambda(I_n) = \epsilon$. Thus, by Theorem 6.1.11, $\lambda(E) = 0$ and $\int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda = 1\lambda(E) + 0\lambda(E^c) = 0$. Since $f \not= 0$  for all $x \in [0,1]$, $\norm{\cdot}$ does not satisfy the property that $\norm{f} = 0$ if and only if $f = 0$, and therefore $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$.
+		Let $A = [0,1]$ and $f(x) = \chi_E(x)$ where $E = [0,1] \cap \bb{Q}$. Then $\norm{f} = \int\limits_{A} \abs{f} d\lambda = \int\limits_{A} \chi_E d\lambda$. By Theorem 10.6.10, $\int\limits_{A} \chi_E d\lambda = \int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda$. Let $x_n \in E$ such that $\bigcup\limits_{n \in \bb{N}} \cbrace{x_n} = E$, and let $\epsilon > 0$ be given. Then for each $I_n = (x_n - \frac{\epsilon}{2^{n+1}}, x_n + \frac{\epsilon}{2^{n+1}})$, $E \subset \bigcup\limits_{n\in\bb{N}}I_n$ and $\sum\limits_{n \in \bb{N}} \lambda(I_n) = \epsilon$. Thus, by Theorem 6.1.11, $\lambda(E) = 0$ and $\int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda = 1\lambda(E) + 0\lambda(E^c) = 0$. Since $f \not= 0$  for all $x \in [0,1]$, $\norm{\cdot}$ does not satisfy the property that $\norm{f} = 0$ if and only if $f = 0$, and therefore $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$.
 	}
 }
-
-%\pagebreak
 
 \problem{(4)}{
 	Let $a \in \bb{R}$ such that $0 < a < \frac{1}{2}$, and let $C_0 = [0,1]$ be the first step in the generalized Cantor set with $C_n$ comprised of $2^n$ disjoint intervals of length $a^n$ such that $C_n \subset C_{n-1}$, and define \[C_a = C_0 \cap C_1 \cap C_2 \cap \cdots\] 
@@ -110,12 +102,10 @@
 	}
 }
 
-%\pagebreak
-
 \proof{5}{
-	The Hausdorff dimension of any countable subset of $\bb{R}^d$ is zero.
+	The Hausdorff dimension of any countable subset of $\bb{R}^n$ is zero.
 }{
-	Let $\epsilon > 0$ be given, and let $X = \cbrace{x_1, x_2, \ldots, x_k}$ for some $k \in \bb{N}$ be a subset of $\bb{R}^d$ with a $\delta_\epsilon$-cover defined as $\bigcup\limits_{n = 1}^{k}C_n$ where $x_n \in C_n$ and $\abs{C_n} = \frac{\epsilon}{2^n}$. By Definition D.2.4, $\mathcal{H}_{\delta_\epsilon}^s \leqslant \sum\limits_{n=1}^{k} (\frac{\epsilon}{2^n})^s = \left(\epsilon - \frac{\epsilon}{2^k}\right)^s$. Thus $\lim\limits_{\delta_\epsilon \to 0^+} \mathcal{H}_{\delta_\epsilon}^s \leqslant 0^s = 0$ for all $s > 0$ and therefore as $k$ is arbitrary, $\dim_H(X) = 0$ for all $k \in \bb{N}$.
+	Let $X = \cbrace{x_1, x_2, x_3, \ldots}$ be a subset of $\bb{R}^n$, and let $C = \bigcup\limits_{k=1}^{\infty}C_k$ be a cover of $X$ such that for each $k \in \bb{N}$, $C_k = \cbrace{x_k}$. Thus $\abs{C_k} = 0$, and $C$ is a $\delta$-cover for all $\delta > 0$. By Definition D.2.4, $\mathcal{H}_\delta^s(X) \leqslant \sum\limits_{k=1}^{\infty}0^s = 0$ for all $\delta, s > 0$, and so $\mathcal{H}^s(X) \leqslant \lim\limits_{\delta \to 0^+}\mathcal{H}_\delta^s(X) = 0$ and $\dim_H(X) = 0$.
 } 
 
 \proof{6}{
@@ -128,7 +118,7 @@
 		From the above, $\infty \leqslant  \sum\limits_{k=1}^{\infty} \lambda^*(E_k)$ and so $\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = \lambda^*(E)$. 
 		
 	\case{$\lambda^*(E) < \infty$}
-		Because $U_i \cap U_j = \emptyset$ for all $i,j \in \bb{N}$ where $i \not= j$, $E_i$ and $E_j$ are similarly disjoint. Thus, given $\epsilon > 0$, by Definition 10.3.1 there exists an open set $A$ where $E \subset A$, $m(A) < \infty$, and for each $k \in \bb{N}$, let $V_k \subset A$ be an open set such that $E_k \subset V_k \subset U_k$ and $\lambda^*(E_k) = m(V_k) - \frac{\epsilon}{2^k}$.  Given that $V_k$ is an open set $m(V_k) = \lambda(V_k)$ by Theorem 10.3.2(Ex2), and so from Theorem 10.4.5(b) and the fact that $V_k$ are pairwise disjoint, $m(V) = \sum\limits_{k=1}^{\infty}m(V_k)$ where $V$ is the union of $V_k$ for all $k$. $V$ is a subset of $A$, so Theorem 10.2.4 gives $m(V) \leqslant m(A)$. Hence \[\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = \sum\limits_{k=1}^{\infty}\left(m(V_k) - \frac{\epsilon}{2^k}\right) \leqslant m(V) < \infty\] 
+		Because $U_i \cap U_j = \emptyset$ for all $i,j \in \bb{N}$ where $i \not= j$, $E_i$ and $E_j$ are similarly disjoint. Thus, given $\epsilon > 0$, by Definition 10.3.1 there exists an open set $A$ where $E \subset A$, $m(A) < \infty$, and for each $k \in \bb{N}$, let $V_k \subset A$ be an open set such that $E_k \subset V_k \subset U_k$ and $\lambda^*(E_k) = m(V_k) - \frac{\epsilon}{2^k}$.  Given that $V_k$ is an open set $m(V_k) = \lambda(V_k)$ by Theorem 10.3.2(Ex2), and so from Theorem 10.4.5(b) and the fact that $V_k$ are pairwise disjoint, $m(V) = \sum\limits_{k=1}^{\infty}m(V_k)$ where $V$ is the union of $V_k$ for all $k$. $V$ is a subset of $A$, so Theorem 10.2.4 gives $m(V) \leqslant m(A)$. Hence \[\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = \sum\limits_{k=1}^{\infty}\left(m(V_k) - \frac{\epsilon}{2^k}\right) \leqslant \sum\limits_{k=1}^{\infty}m(V_k) = m(V) < \infty\] 
 	\end{enumerate}
 	
 	Therefore $\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = m(V) - \epsilon = m(V)$, since $\epsilon$ is arbitrary. Similarly from Definition 10.3.1, for each $\epsilon > 0$ there exists an open set $B$ such that $E \subset B \subset V$ and $\lambda^*(E) = m(B) - \epsilon$, and again since $\epsilon$ is arbitrary, $\lambda^*(E) = m(B)$. Thus
@@ -149,13 +139,13 @@
 	\subproof{(a)}{
 		$C_\gamma$ has positive measure with no intervals.
 	}{
-		An alternate definition for $C_\gamma$ can be defined as the set $[0,1] \backslash A_\gamma$, where $A_\gamma = \bigcup\limits_{n=1}^{\infty} A_n$ such that $A_i,A_j$ are pairwise disjoint when $i \not= j$ and each $A_n$ is the union of $2^{n-1}$ disjoint open intervals of length $\gamma/3^n$. For each $n$, $m(A_n) = \sum\limits_{i=1}^{2^{n-1}} \frac{\gamma}{3^n}$ using Definition 10.2.2, and so from Theorem 10.3.2(Ex2) $\lambda(A_n) = \gamma\left(\frac{2^{n-1}}{3^n}\right)$. Because $A_\gamma$ is a countable union of disjoint open sets, $\lambda(A_\gamma) = \sum\limits_{n=1}^{\infty}\lambda(A_n) = \gamma$ by Theorem 10.4.5. Since $C_\gamma$ is complementary to $A_\gamma$ on $[0,1]$, $C_\gamma$ has measure $\lambda(C_\gamma) = 1 - \lambda(A_\gamma)$ by Corollary 10.4.3 and Theorem 10.3.7. Thus $\lambda(C_\gamma) = 1 - \gamma$. However, given $\epsilon > 0$ and $x \in C_\gamma$, let $I = [x - \epsilon, x + \epsilon]$. For some $n \in \bb{N}$, the length of each closed interval in $C_n$ is $l =  \frac{1-\gamma}{3^n} < \epsilon$. As $x \in C_n$, $x$ is also in some $I_n$ of length  $l$ with a gap in between $I_n$ and the adjacent intervals, therefore $I_n \subset I$ and $I$ contains all points that lie on the same interval as $x$, and as $\epsilon$ is arbitrary, $I = \cbrace{x}$ and there are no intervals in $C_\gamma$. 
+		An alternate definition for $C_\gamma$ can be defined as the set $[0,1] \backslash A_\gamma$, where $A_\gamma = \bigcup\limits_{n=1}^{\infty} A_n$ such that $A_i,A_j$ are pairwise disjoint when $i \not= j$ and each $A_n$ is the union of $2^{n-1}$ disjoint open intervals of length $\gamma/3^n$. For each $n$, $m(A_n) = \sum\limits_{i=1}^{2^{n-1}} \frac{\gamma}{3^n}$ using Definition 10.2.2, and so from Theorem 10.3.2(Ex2) $\lambda(A_n) = \gamma\left(\frac{2^{n-1}}{3^n}\right)$. Because $A_\gamma$ is a countable union of disjoint open sets, $\lambda(A_\gamma) = \sum\limits_{n=1}^{\infty}\lambda(A_n) = \gamma$ by Theorem 10.4.5. Since $C_\gamma$ is complementary to $A_\gamma$ on $[0,1]$, $C_\gamma$ has measure $\lambda(C_\gamma) = 1 - \lambda(A_\gamma)$ by Corollary 10.4.3 and Theorem 10.3.7. Thus $\lambda(C_\gamma) = 1 - \gamma$. However, given $\epsilon > 0$ and $x \in C_\gamma$, let $I = [x - \epsilon, x + \epsilon]$. For some $n \in \bb{N}$, the length of each closed interval in $C_n$ is $l =  \frac{1-\gamma}{3^n} < \epsilon$. As $x \in C_n$, $x$ is also in some closed interval $I_n$ of length  $l$ with a gap in between $I_n$ and the adjacent intervals, therefore $I_n \subset I$ and $I$ contains all points that lie on the same interval as $x$. As $\epsilon$ is arbitrary, $I = \cbrace{x}$ and there are no intervals in $C_\gamma$. 
 	}
 	
 	\subproof{(b)}{
 		If $f : [0,1] \to \bb{R}$ as $f(x) = \chi_{C_\gamma}(x)$, then $f$ is not Riemann integrable.
 	}{
-		Because there are no intervals on $C_\gamma$, each $x \in C_\gamma$ is a jump discontinuity of $f$. Hence the measure of the set of discontinuities of $f$ has measure $1-\gamma > 0$, and $f$ is not Riemann integrable by Theorem 6.1.13.
+		Because there are no intervals on $C_\gamma$, each $x \in C_\gamma$ is a jump discontinuity of $f$. Hence the set of discontinuities of $f$ has measure $1-\gamma > 0$, and $f$ is not Riemann integrable by Theorem 6.1.13.
 	}
 	
 	\subproof{(c)}{
