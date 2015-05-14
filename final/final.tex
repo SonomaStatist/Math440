@@ -22,7 +22,7 @@
 	}
 }
 
-\pagebreak
+%\pagebreak
 
 \problem{2}{
 	Let $\cbrace{q_k}_{k\in\bb{N}}$ be an enumeration of the rational numbers on $[0,1]$, and for each $k \in \bb{N}$ define $C_k = \cbrace{q_1, q_2, \ldots, q_k}$. Let $f : [0,1] \to \bb{R}$ be defined by $f(x) = \sum\limits_{k=1}^{\infty} 2^{-k} \chi_{C_k}$.
@@ -59,7 +59,7 @@
 		\end{enumerate}
 	}
 	
-	\pagebreak
+	%\pagebreak
 	
 	\subproof{(c)}{
 		$f$ is Riemann integrable on $[0,1]$ and $\int\limits_{0}^{1}f dx = 0$
@@ -74,7 +74,7 @@
 	}
 }
 
-\pagebreak
+%\pagebreak
 
 \problem{3}{
 	Let $A$ be a measurable subset of $\bb{R}$, and let $\mathcal{L}(A)$ denote the set of all Lebesgue integrable functions on $A$. Given $f,g \in \mathcal{L}(A)$ and $c \in \bb{R}$, define $(f+g)(x) = f(x) + g(x)$ and $(cf)(x) = cf(x)$ for all $x \in \bb{R}$
@@ -88,11 +88,11 @@
 	\subproof{(c)}{
 		If $\norm{\cdot} : \mathcal{L}(A) \to \bb{R}$ is defined as $\norm{f} = \int\limits_{A} \abs{f} d\lambda$, then $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$
 	}{
-		Let $A = [0,1]$ and $f(x) = \chi_E$ where $E = [0,1] \backslash \bb{Q}$. Then $\norm{f} = \int\limits_{A} \abs{f} d\lambda = \int\limits_{A} \chi_E d\lambda$. By Theorem 10.6.10, $\int\limits_{A} \chi_E d\lambda = \int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda$. Let $x_n \in E$ such that $\bigcup\limits_{n \in \bb{N}} \cbrace{x_n} = E$, and let $\epsilon > 0$ be given. Then for each $I_n = (x_n - \frac{\epsilon}{2^{n+1}}, x_n + \frac{\epsilon}{2^{n+1}})$, $E \subset \bigcup\limits_{n\in\bb{N}}I_n$ and $\sum\limits_{n \in \bb{N}} \lambda(I_n) = \epsilon$. Thus, by Theorem 6.1.11, $\lambda(E) = 0$ and $\int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda = 1\lambda(E) + 0\lambda(E^c) = 0$. Since $f \not= 0$, $\norm{\cdot}$ does not satisfy the property that $\norm{f} = 0$ if and only if $f = 0$, and therefore $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$.
+		Let $A = [0,1]$ and $f(x) = \chi_E$ where $E = [0,1] \backslash \bb{Q}$. Then $\norm{f} = \int\limits_{A} \abs{f} d\lambda = \int\limits_{A} \chi_E d\lambda$. By Theorem 10.6.10, $\int\limits_{A} \chi_E d\lambda = \int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda$. Let $x_n \in E$ such that $\bigcup\limits_{n \in \bb{N}} \cbrace{x_n} = E$, and let $\epsilon > 0$ be given. Then for each $I_n = (x_n - \frac{\epsilon}{2^{n+1}}, x_n + \frac{\epsilon}{2^{n+1}})$, $E \subset \bigcup\limits_{n\in\bb{N}}I_n$ and $\sum\limits_{n \in \bb{N}} \lambda(I_n) = \epsilon$. Thus, by Theorem 6.1.11, $\lambda(E) = 0$ and $\int\limits_{E} 1 d\lambda + \int\limits_{E^c} 0 d\lambda = 1\lambda(E) + 0\lambda(E^c) = 0$. Since $f \not= 0$  for all $x \in [0,1]$, $\norm{\cdot}$ does not satisfy the property that $\norm{f} = 0$ if and only if $f = 0$, and therefore $\norm{\cdot}$ is not a norm on $\mathcal{L}(A)$.
 	}
 }
 
-\pagebreak
+%\pagebreak
 
 \problem{(4)}{
 	Let $a \in \bb{R}$ such that $0 < a < \frac{1}{2}$, and let $C_0 = [0,1]$ be the first step in the generalized Cantor set with $C_n$ comprised of $2^n$ disjoint intervals of length $a^n$ such that $C_n \subset C_{n-1}$, and define \[C_a = C_0 \cap C_1 \cap C_2 \cap \cdots\] 
@@ -110,7 +110,7 @@
 	}
 }
 
-\pagebreak
+%\pagebreak
 
 \proof{5}{
 	The Hausdorff dimension of any countable subset of $\bb{R}^d$ is zero.
@@ -121,7 +121,26 @@
 \proof{6}{
 	Let $\cbrace{E_k}_{k \in \bb{N}}$ be a sequence of subsets of $\bb{R}$. If there exists a sequence $\cbrace{U_k}_{k \in \bb{N}}$ of pairwise disjoint open sets such that $E_k \subset U_k$ for all $k \in \bb{N}$, then \[\lambda^*\left(\bigcup\limits_{k = 1}^{\infty}E_k\right) = \sum\limits_{k = 1}^{\infty}\lambda^*(E_k)\]
 }{
-	Let $\cbrace{U_k}_{k \in \bb{N}}$ be a sequence of disjoint open sets such that $E_k \subset U_k$ for all $k$, and let $U$ be the union of all $U_k$ and $E$ be the union of all $E_K$. By Theorem 10.4.4(a), $\lambda^*(E) \leqslant \sum\limits_{k=1}^{\infty} \lambda^*(E_k)$. For each $k$, $E_k \subset U_k$ and $E \subset U$, so by Definition 10.3.1 $\lambda^*(E_k) \leqslant \lambda(U_k) = \lambda^*(U_k)$ and $\lambda^*(E) \leqslant \lambda(U) = \lambda^*(U)$. Hence $\sum\limits_{k=1}^{\infty}\lambda^*(E_k) \leqslant \sum\limits_{k=1}^{\infty}\lambda(U_k) = \lambda(U)$ by Theorem 10.4.5(b) and Definition 10.3.4(a).
+	Let $\cbrace{U_k}_{k \in \bb{N}}$ be a sequence of disjoint open sets such that $E_k \subset U_k$ for all $k$, and let $U$ be the union of all $U_k$ and $E$ be the union of all $E_K$. By Theorem 10.4.4(a), $\lambda^*(E) \leqslant \sum\limits_{k=1}^{\infty} \lambda^*(E_k)$. 
+	
+	\begin{enumerate}
+	\case{$\lambda^*(E) = \infty$} 
+		From the above, $\infty \leqslant  \sum\limits_{k=1}^{\infty} \lambda^*(E_k)$ and so $\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = \lambda^*(E)$. 
+		
+	\case{$\lambda^*(E) < \infty$}
+		Because $U_i \cap U_j = \emptyset$ for all $i,j \in \bb{N}$ where $i \not= j$, $E_i$ and $E_j$ are similarly disjoint. Thus, given $\epsilon > 0$, by Definition 10.3.1 there exists an open set $A$ where $E \subset A$, $m(A) < \infty$, and for each $k \in \bb{N}$, let $V_k \subset A$ be an open set such that $E_k \subset V_k \subset U_k$ and $\lambda^*(E_k) = m(V_k) - \frac{\epsilon}{2^k}$.  Given that $V_k$ is an open set $m(V_k) = \lambda(V_k)$ by Theorem 10.3.2(Ex2), and so from Theorem 10.4.5(b) and the fact that $V_k$ are pairwise disjoint, $m(V) = \sum\limits_{k=1}^{\infty}m(V_k)$ where $V$ is the union of $V_k$ for all $k$. $V$ is a subset of $A$, so Theorem 10.2.4 gives $m(V) \leqslant m(A)$. Hence \[\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = \sum\limits_{k=1}^{\infty}\left(m(V_k) - \frac{\epsilon}{2^k}\right) \leqslant m(V) < \infty\] 
+	\end{enumerate}
+	
+	Therefore $\sum\limits_{k=1}^{\infty} \lambda^*(E_k) = m(V) - \epsilon = m(V)$, since $\epsilon$ is arbitrary. Similarly from Definition 10.3.1, for each $\epsilon > 0$ there exists an open set $B$ such that $E \subset B \subset V$ and $\lambda^*(E) = m(B) - \epsilon$, and again since $\epsilon$ is arbitrary, $\lambda^*(E) = m(B)$. Thus
+	
+	\longeq{
+		\eqstep{\sum\limits_{k=1}^{\infty}\lambda^*(E_k) + \lambda^*(E)}{m(V) + m(B)}
+		\leqstep{\lambda^*(E) + \lambda^*(E)}{m(V) + m(B)}
+		\leqstep{\lambda^*(E) + \lambda^*(E)}{\sum\limits_{k=1}^{\infty}\lambda^*(E_k) + \lambda^*(E)}
+		\leqstep{\lambda^*(E)}{\sum\limits_{k=1}^{\infty}\lambda^*(E_k)}
+	}
+	
+	Therefore $\lambda^*(E) = \sum\limits_{k=1}^{\infty}\lambda^*(E_k)$.
 }
 
 \end{document}
